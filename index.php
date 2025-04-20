@@ -70,8 +70,9 @@ include "koneksi/ceksession.php";
                 <div class="logo">
                   <img src="img/logo_PPS.png" alt="" />
                 </div>
-                <h3 class="bnr-sub-title">SISTEM INFORMASI PENGARSIPAN SURAT</h3>
-                <h3 class="bnr-sub-title"><span class="logo-dec">PEMERINTAH PROVINSI PAPUA SELATAN</span></h3>
+                <h3 class="bnr-sub-title">SISTEM INFORMASI PENGARSIPAN SURAT INTERNAL</h3>
+                <h3 class="bnr-sub-title"><span class="logo-dec">BIRO PEMERINTAHAN, OTSUS DAN KESRA</span></h3>
+                <h3 class="bnr-sub-title"><span class="logo-dec">SETDA PROVINSI PAPUA SELATAN</span></h3>
               </div>
             </div>
           </div>
