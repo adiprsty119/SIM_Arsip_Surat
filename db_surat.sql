@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2018 at 03:49 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.5.30
+-- Generation Time: Apr 21, 2025 at 04:12 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,7 +33,7 @@ CREATE TABLE `tb_admin` (
   `username_admin` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `gambar` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_admin`
@@ -58,7 +59,7 @@ CREATE TABLE `tb_bagian` (
   `alamat` text NOT NULL,
   `no_hp_bagian` varchar(12) NOT NULL,
   `gambar` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_bagian`
@@ -89,6 +90,32 @@ INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `username_admin_bagian`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_galeri`
+--
+
+CREATE TABLE `tb_galeri` (
+  `id` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_laporan`
+--
+
+CREATE TABLE `tb_laporan` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_suratkeluar`
 --
 
@@ -103,8 +130,8 @@ CREATE TABLE `tb_suratkeluar` (
   `perihal_suratkeluar` text NOT NULL,
   `file_suratkeluar` varchar(255) NOT NULL,
   `operator` varchar(50) NOT NULL,
-  `tanggal_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tanggal_entry` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_suratkeluar`
@@ -129,7 +156,7 @@ INSERT INTO `tb_suratkeluar` (`id_suratkeluar`, `tanggalkeluar_suratkeluar`, `ko
 
 CREATE TABLE `tb_suratmasuk` (
   `id_suratmasuk` int(11) NOT NULL,
-  `tanggalmasuk_suratmasuk` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggalmasuk_suratmasuk` datetime NOT NULL DEFAULT current_timestamp(),
   `kode_suratmasuk` varchar(10) NOT NULL,
   `nomorurut_suratmasuk` varchar(7) NOT NULL,
   `nomor_suratmasuk` varchar(25) NOT NULL,
@@ -139,21 +166,21 @@ CREATE TABLE `tb_suratmasuk` (
   `perihal_suratmasuk` text NOT NULL,
   `file_suratmasuk` varchar(255) NOT NULL,
   `operator` varchar(50) NOT NULL,
-  `tanggal_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggal_entry` datetime NOT NULL DEFAULT current_timestamp(),
   `disposisi1` varchar(50) NOT NULL,
-  `tanggal_disposisi1` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggal_disposisi1` datetime NOT NULL DEFAULT current_timestamp(),
   `disposisi2` varchar(50) NOT NULL,
   `tanggal_disposisi2` varchar(25) NOT NULL,
   `disposisi3` varchar(50) NOT NULL,
-  `tanggal_disposisi3` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tanggal_disposisi3` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_suratmasuk`
 --
 
 INSERT INTO `tb_suratmasuk` (`id_suratmasuk`, `tanggalmasuk_suratmasuk`, `kode_suratmasuk`, `nomorurut_suratmasuk`, `nomor_suratmasuk`, `tanggalsurat_suratmasuk`, `pengirim`, `kepada_suratmasuk`, `perihal_suratmasuk`, `file_suratmasuk`, `operator`, `tanggal_entry`, `disposisi1`, `tanggal_disposisi1`, `disposisi2`, `tanggal_disposisi2`, `disposisi3`, `tanggal_disposisi3`) VALUES
-(2, '2017-09-20 13:00:00', '900', '4518', '050/588/300.01', '2017-09-20', 'BAPPEDA KOTA SAMARINDA', 'Sekretaris Daerah', 'Penyampaian Usulan Bantuan Keuangan Pada APBD Prov.Kaltim Tahun 2018\r\n', '2017-4518.pdf', 'admin', '2017-11-18 03:30:06', 'SEKDA', '2017-09-20 14:30:00', 'PLT.ASS.II', '2017-09-28 09:00:00', 'ADM.PEMB', '2017-09-29 10:00:00'),
+(2, '2017-09-20 13:00:00', '900', '4518', '050/588/300.01', '2017-09-20', 'BAPPEDA PROVINSI PAPUA SELATAN', 'Sekretaris Daerah', 'Penyampaian Usulan Bantuan Keuangan Pada APBD Prov. Papua Selatan Tahun 2025\n', '2017-4518.pdf', 'admin', '2017-11-18 03:30:06', 'SEKDA', '2017-09-20 14:30:00', 'PLT.ASS.II', '2017-09-28 09:00:00', 'ADM.PEMB', '2017-09-29 10:00:00'),
 (3, '2017-09-20 14:00:00', '010', '4519', '036/B/HMJELEKTRO/IX/2017', '2017-09-18', 'FORUM KOMUNIKASI HIMPUNAN MAHASISWA ELEKTRO INDONESIA WILAYAH XIII KALIMANTAN', 'UMUM', 'Permohonan\r\n', '2017-4519.pdf', 'admin2', '2017-11-14 23:43:44', 'UMUM', '2017-09-22 11:00:00', '', '1970-01-01 07:00:00', 'UMUM', '2017-09-22 11:05:00'),
 (5, '2017-09-21 15:10:00', '660', '4520', '660.2/1539/100.14', '2017-09-19', 'DINAS LINGKUNGAN HIDUP KOTA SAMARINDA', 'Sekretaris Daerah', 'Penting', '2017-4520.pdf', 'admin2', '2017-11-14 23:58:01', 'SEKDA', '2017-09-21 23:00:00', 'PLT.ASS.II', '2017-09-24 21:00:00', 'EKONOMI & SDA', '2017-09-25 09:00:00'),
 (6, '2017-09-26 10:00:00', '061', '4521', '061/4382/SJ', '2017-09-20', 'MENDAGRI RI', 'Organisasi', 'Surat Edaran Tentang Mekanisme Layanan Administrasi Kemendagri\r\n', '2017-4521.pdf', 'admin', '2017-12-02 21:44:11', 'ASS.III', '2017-09-26 15:00:00', '', '1970-01-01 07:00:00', 'ORTAL', '2017-09-27 11:30:00'),
@@ -179,6 +206,18 @@ ALTER TABLE `tb_bagian`
   ADD UNIQUE KEY `username_admin_bagian` (`username_admin_bagian`);
 
 --
+-- Indexes for table `tb_galeri`
+--
+ALTER TABLE `tb_galeri`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_laporan`
+--
+ALTER TABLE `tb_laporan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_suratkeluar`
 --
 ALTER TABLE `tb_suratkeluar`
@@ -201,21 +240,38 @@ ALTER TABLE `tb_suratmasuk`
 --
 ALTER TABLE `tb_admin`
   MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `tb_galeri`
+--
+ALTER TABLE `tb_galeri`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_laporan`
+--
+ALTER TABLE `tb_laporan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tb_suratkeluar`
 --
 ALTER TABLE `tb_suratkeluar`
   MODIFY `id_suratkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
 --
 -- AUTO_INCREMENT for table `tb_suratmasuk`
 --
 ALTER TABLE `tb_suratmasuk`
   MODIFY `id_suratmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
