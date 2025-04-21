@@ -9,7 +9,7 @@ include "login/ceksession.php";
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arsip Surat Pemerintah Provinsi Papua Selatan</title>
+  <title>SIM ADMINISTRASI PEMOTKESRA PPS</title>
 
   <!-- Stylesheets -->
   <link href="../assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -127,7 +127,7 @@ include "login/ceksession.php";
                 while ($g = mysqli_fetch_array($galeri)) {
                   $activeClass = $aktif ? 'active' : '';
                   $filePath = "img/foto_galeri/{$g['foto']}";
-                  $src = file_exists($filePath) ? $filePath : "../img/foto_galeri";
+                  $src = file_exists($filePath) ? $filePath : "img/foto_galeri";
                   echo "
                     <div class='item $activeClass'>
                       <img class='img-responsive' src='$src' alt='{$g['judul']}'>
@@ -156,7 +156,7 @@ include "login/ceksession.php";
       <!-- footer content -->
       <footer>
         <div class="pull-right">
-          Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          SIM ADMINISTRASI Pemerintah Papua Selatan - by <a href="https://www.instagram.com/id.toma/">TOMA</a>
         </div>
         <div class="clearfix"></div>
       </footer>
