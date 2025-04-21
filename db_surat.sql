@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2025 at 04:12 AM
+-- Generation Time: Apr 21, 2025 at 06:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_surat`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disposisi`
+--
+
+CREATE TABLE `disposisi` (
+  `id_disposisi` int(11) NOT NULL,
+  `id_surat` int(11) NOT NULL,
+  `tujuan` varchar(255) NOT NULL,
+  `isi_surat` varchar(255) NOT NULL,
+  `status` enum('pending','diteruskan','selesai','') NOT NULL,
+  `tanggal_disposisi` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -90,6 +105,22 @@ INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `username_admin_bagian`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_berkasdigital`
+--
+
+CREATE TABLE `tb_berkasdigital` (
+  `id_berkas` int(11) NOT NULL,
+  `nip` int(18) NOT NULL,
+  `nama_dokumen` varchar(50) NOT NULL,
+  `kategori_dokumen` varchar(50) NOT NULL,
+  `tanggal_upload` date NOT NULL,
+  `file_path` text NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_galeri`
 --
 
@@ -103,6 +134,27 @@ CREATE TABLE `tb_galeri` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_informasikepegawaian`
+--
+
+CREATE TABLE `tb_informasikepegawaian` (
+  `id_info` int(11) NOT NULL,
+  `nip` int(18) NOT NULL,
+  `riwayat_pendidikan` text NOT NULL,
+  `riwayat_diklat` text NOT NULL,
+  `riwayat_jabatan` text NOT NULL,
+  `riwayat_mutasi` text NOT NULL,
+  `riwayat_penghargaan` text NOT NULL,
+  `tugas_belajar` tinyint(1) NOT NULL,
+  `izin_belajar` tinyint(1) NOT NULL,
+  `masa_kerja_tahun` int(11) NOT NULL,
+  `masa_kerja_bulan` int(11) NOT NULL,
+  `catatan_lain` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_laporan`
 --
 
@@ -111,6 +163,49 @@ CREATE TABLE `tb_laporan` (
   `judul` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL,
   `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_nominatif_asn`
+--
+
+CREATE TABLE `tb_nominatif_asn` (
+  `nip` int(18) NOT NULL,
+  `nama_lengkap` varchar(50) NOT NULL,
+  `tempat_lahir` varchar(50) NOT NULL,
+  `tangga_lahir` date NOT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan','','') NOT NULL,
+  `agama` varchar(50) NOT NULL,
+  `status_perkawinan` varchar(50) NOT NULL,
+  `pangkat_golongan` varchar(50) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `unit_kerja` varchar(50) NOT NULL,
+  `tmt_jabatan` date NOT NULL,
+  `pendidikan_terakhir` varchar(100) NOT NULL,
+  `jenis_kepegawaian` varchar(50) NOT NULL,
+  `status_aktif` enum('aktif','pensiun','meninggal','lainnya') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_riwayat_kgp_kp`
+--
+
+CREATE TABLE `tb_riwayat_kgp_kp` (
+  `id_riwayat` int(11) NOT NULL,
+  `nip` int(18) NOT NULL,
+  `jenis_kenaikan` enum('KGB','KP','','') NOT NULL,
+  `pangkat_gol_sebelumnya` varchar(50) NOT NULL,
+  `pangkat_gol_sekarang` varchar(50) NOT NULL,
+  `tmt_kenaikan` date NOT NULL,
+  `no_sk` varchar(50) NOT NULL,
+  `tanggal_sk` date NOT NULL,
+  `penandatanganan_sk` varchar(50) NOT NULL,
+  `file_sk` text NOT NULL,
+  `status_proses` enum('sudah','belum','ditolak','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -192,6 +287,13 @@ INSERT INTO `tb_suratmasuk` (`id_suratmasuk`, `tanggalmasuk_suratmasuk`, `kode_s
 --
 
 --
+-- Indexes for table `disposisi`
+--
+ALTER TABLE `disposisi`
+  ADD PRIMARY KEY (`id_disposisi`),
+  ADD KEY `id_surat` (`id_surat`);
+
+--
 -- Indexes for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
@@ -206,16 +308,43 @@ ALTER TABLE `tb_bagian`
   ADD UNIQUE KEY `username_admin_bagian` (`username_admin_bagian`);
 
 --
+-- Indexes for table `tb_berkasdigital`
+--
+ALTER TABLE `tb_berkasdigital`
+  ADD PRIMARY KEY (`id_berkas`),
+  ADD KEY `nip` (`nip`);
+
+--
 -- Indexes for table `tb_galeri`
 --
 ALTER TABLE `tb_galeri`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_informasikepegawaian`
+--
+ALTER TABLE `tb_informasikepegawaian`
+  ADD PRIMARY KEY (`id_info`),
+  ADD KEY `nip` (`nip`);
+
+--
 -- Indexes for table `tb_laporan`
 --
 ALTER TABLE `tb_laporan`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_nominatif_asn`
+--
+ALTER TABLE `tb_nominatif_asn`
+  ADD PRIMARY KEY (`nip`);
+
+--
+-- Indexes for table `tb_riwayat_kgp_kp`
+--
+ALTER TABLE `tb_riwayat_kgp_kp`
+  ADD PRIMARY KEY (`id_riwayat`),
+  ADD KEY `nip` (`nip`);
 
 --
 -- Indexes for table `tb_suratkeluar`
@@ -236,6 +365,12 @@ ALTER TABLE `tb_suratmasuk`
 --
 
 --
+-- AUTO_INCREMENT for table `disposisi`
+--
+ALTER TABLE `disposisi`
+  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
@@ -248,16 +383,40 @@ ALTER TABLE `tb_bagian`
   MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `tb_berkasdigital`
+--
+ALTER TABLE `tb_berkasdigital`
+  MODIFY `id_berkas` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_galeri`
 --
 ALTER TABLE `tb_galeri`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_informasikepegawaian`
+--
+ALTER TABLE `tb_informasikepegawaian`
+  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_laporan`
 --
 ALTER TABLE `tb_laporan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_nominatif_asn`
+--
+ALTER TABLE `tb_nominatif_asn`
+  MODIFY `nip` int(18) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_riwayat_kgp_kp`
+--
+ALTER TABLE `tb_riwayat_kgp_kp`
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_suratkeluar`
@@ -270,6 +429,34 @@ ALTER TABLE `tb_suratkeluar`
 --
 ALTER TABLE `tb_suratmasuk`
   MODIFY `id_suratmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `disposisi`
+--
+ALTER TABLE `disposisi`
+  ADD CONSTRAINT `disposisi_ibfk_1` FOREIGN KEY (`id_surat`) REFERENCES `tb_suratmasuk` (`id_suratmasuk`);
+
+--
+-- Constraints for table `tb_berkasdigital`
+--
+ALTER TABLE `tb_berkasdigital`
+  ADD CONSTRAINT `tb_berkasdigital_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_nominatif_asn` (`nip`);
+
+--
+-- Constraints for table `tb_informasikepegawaian`
+--
+ALTER TABLE `tb_informasikepegawaian`
+  ADD CONSTRAINT `tb_informasikepegawaian_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_nominatif_asn` (`nip`);
+
+--
+-- Constraints for table `tb_riwayat_kgp_kp`
+--
+ALTER TABLE `tb_riwayat_kgp_kp`
+  ADD CONSTRAINT `tb_riwayat_kgp_kp_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_nominatif_asn` (`nip`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

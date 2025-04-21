@@ -122,7 +122,6 @@ include "login/ceksession.php";
                           </tr>
                         </thead>
 
-
                         <tbody>
                           <?php
                           while ($data = mysqli_fetch_array($query1)) {
