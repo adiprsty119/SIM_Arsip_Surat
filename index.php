@@ -32,13 +32,13 @@ include "koneksi/ceksession.php";
         <header id="main-header">
           <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">ARSIP SURAT <span class="logo-dec">Pemerintah Provinsi Papua Selatan</span></a>
+              <div class="navbar-header" style="display: flex; align-items: center;">
+                <a href="#">
+                  <img src="img/logo_PPS.png" alt="Logo PPS" style="width: 5rem; margin-right: 10px;">
+                </a>
+                <a class="navbar-brand" href="#" style="padding-top: 0; padding-bottom: 0;">
+                  ARSIP SURAT <span class="logo-dec">Pemerintah Provinsi Papua Selatan</span>
+                </a>
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -67,9 +67,6 @@ include "koneksi/ceksession.php";
             <div class="row">
               <div class="banner-info text-center wow fadeIn delay-05s">
                 <h2 class="bnr-sub-title"></h2>
-                <div class="logo">
-                  <img src="img/logo_PPS.png" alt="" />
-                </div>
                 <h3 class="bnr-sub-title">SISTEM INFORMASI PENGARSIPAN SURAT INTERNAL</h3>
                 <h3 class="bnr-sub-title"><span class="logo-dec">BIRO PEMERINTAHAN, OTSUS DAN KESRA</span></h3>
                 <h3 class="bnr-sub-title"><span class="logo-dec">SETDA PROVINSI PAPUA SELATAN</span></h3>
@@ -86,7 +83,7 @@ include "koneksi/ceksession.php";
         <div class="row">
           <div class="col-md-12 text-center">
             <h2 class="service-title pad-bt15">Tentang</h2>
-            <p class="sub-title pad-bt15">Website ini berguna untuk pengarsipan Surat Masuk dan Surat Keluar di Pemerintah Provinsi Papua Selatan</p>
+            <p class="sub-title pad-bt15">Website ini berguna untuk pengarsipan Surat Masuk dan Surat Keluar di Biro Pemerinatahan, Otsus dan Kesra Setda Provinsi Papua Selatan</p>
             <p>Surat diarsipkan dalam format PDF lalu disesuaikan nomor urutnya.</p>
             <hr class="bottom-line">
             <p class="sub-title pad-bt15">Pengarsipan Surat itu<strong> PENTING</strong></p>
