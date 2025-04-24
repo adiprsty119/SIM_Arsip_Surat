@@ -106,20 +106,20 @@ include "../koneksi/koneksi.php";
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            $sql = mysqli_query($db, "SELECT * FROM tb_spt_sppd ORDER BY id DESC");
+                                            $sql = mysqli_query($db, "SELECT * FROM tb_sptsppd ORDER BY id DESC");
                                             while ($row = mysqli_fetch_assoc($sql)) {
                                                 echo "<tr>
-                <td>{$no}</td>
-                <td>{$row['pegawai']}</td>
-                <td>{$row['tujuan']}</td>
-                <td><a href='file_spt_sppd/{$row['spt']}' target='_blank'>Lihat</a></td>
-                <td><a href='file_spt_sppd/{$row['sppd']}' target='_blank'>Lihat</a></td>
-                <td>{$row['tanggal']}</td>
-                <td>
-                    <a href='edit_spt_sppd.php?id={$row['id']}' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
-                    <a href='proses/hapus_spt_sppd.php?id={$row['id']}' class='btn btn-danger btn-xs' onclick=\"return confirm('Yakin ingin hapus?')\"><i class='fa fa-trash'></i></a>
-                </td>
-            </tr>";
+                                                    <td>{$no}</td>
+                                                    <td>{$row['pegawai']}</td>
+                                                    <td>{$row['tujuan']}</td>
+                                                    <td><a href='file_spt_sppd/{$row['spt']}' target='_blank'>Lihat</a></td>
+                                                    <td><a href='file_spt_sppd/{$row['sppd']}' target='_blank'>Lihat</a></td>
+                                                    <td>{$row['tanggal']}</td>
+                                                    <td>
+                                                        <a href='edit_spt_sppd.php?id={$row['id']}' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
+                                                        <a href='proses/hapus_spt_sppd.php?id={$row['id']}' class='btn btn-danger btn-xs' onclick=\"return confirm('Yakin ingin hapus?')\"><i class='fa fa-trash'></i></a>
+                                                    </td>
+                                                </tr>";
                                                 $no++;
                                             }
                                             ?>

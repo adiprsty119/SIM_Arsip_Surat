@@ -4,7 +4,7 @@ include "../koneksi/koneksi.php";
 include "login/ceksession.php";
 
 $id = $_GET['id'];
-$data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_spt_sppd WHERE id='$id'"));
+$data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_sptsppd WHERE id='$id'"));
 
 if (!$data) {
     echo "<script>alert('Data tidak ditemukan'); window.location='spt_sppd.php';</script>";

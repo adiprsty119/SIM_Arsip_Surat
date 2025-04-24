@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2025 at 06:34 AM
+-- Generation Time: Apr 24, 2025 at 11:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,59 @@ CREATE TABLE `disposisi` (
   `status` enum('pending','diteruskan','selesai','') NOT NULL,
   `tanggal_disposisi` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nominatif_asn`
+--
+
+CREATE TABLE `nominatif_asn` (
+  `id` int(11) NOT NULL,
+  `nip` varchar(255) NOT NULL,
+  `nama_lengkap` varchar(100) NOT NULL,
+  `tempat_lahir` varchar(100) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `pangkat_golongan` varchar(20) NOT NULL,
+  `pangkat_tmt` varchar(20) NOT NULL,
+  `nama_jabatan_eselon` varchar(255) NOT NULL,
+  `jabatan_eselon_tmt` varchar(20) NOT NULL,
+  `bulan_masakerja` int(20) NOT NULL,
+  `tahun_masakerja` int(20) NOT NULL,
+  `nama_diklat` varchar(255) DEFAULT NULL,
+  `bulan_diklat` int(20) DEFAULT NULL,
+  `tahun_diklat` int(20) DEFAULT NULL,
+  `jumlah_jam_diklat` varchar(100) DEFAULT NULL,
+  `tingkat_pendidikan_terakhir` varchar(50) NOT NULL,
+  `jurusan` varchar(50) NOT NULL,
+  `instansi_sekolah` varchar(100) NOT NULL,
+  `tahun_lulus_pendidikan` int(20) NOT NULL,
+  `no_ijazah` varchar(100) NOT NULL,
+  `usia` int(100) NOT NULL,
+  `agama` enum('Islam','Katolik','Protestan','Budha','Hindu','Konghucu','Lainnya') NOT NULL,
+  `karpeg` varchar(100) NOT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan','.','') NOT NULL,
+  `asal` varchar(100) NOT NULL,
+  `kgb` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nominatif_asn`
+--
+
+INSERT INTO `nominatif_asn` (`id`, `nip`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `pangkat_golongan`, `pangkat_tmt`, `nama_jabatan_eselon`, `jabatan_eselon_tmt`, `bulan_masakerja`, `tahun_masakerja`, `nama_diklat`, `bulan_diklat`, `tahun_diklat`, `jumlah_jam_diklat`, `tingkat_pendidikan_terakhir`, `jurusan`, `instansi_sekolah`, `tahun_lulus_pendidikan`, `no_ijazah`, `usia`, `agama`, `karpeg`, `jenis_kelamin`, `asal`, `kgb`) VALUES
+(1, '19720713 199203 1 010', 'Drs. JOSAFAT FONATABA, M.AP', 'Manokwari', '1972-07-13', 'Pembina (IV / a)', '2024-04-01', 'Kepala Bagian Pemerintahan pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 27, 1, NULL, NULL, NULL, NULL, 'S-II', 'Administrasi Publik', 'Universitas Cenderawasih', 2016, '0010/11.6/2016', 52, 'Protestan', 'F.362027', 'laki-laki', 'Non-OAP', '2023-03-01'),
+(2, '19810323 199912 1 004', 'KARMIN EKO. E. WADOR, S.STP, M.Si', 'Bade', '1981-03-23', 'Pembina (IV / b)', '2024-06-01', 'Kepala Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-11-13', 21, 1, 'PKN TK.II', 9, 2024, NULL, 'S-II', 'Magister Sains', 'IPDN', 2008, '423.7/466/PPs.MAPD/08', 43, 'Islam', 'K.000788', 'laki-laki', 'Non-OAP', NULL),
+(3, '19840721 200312 1 002', 'STEVANUS ARIS MAHUZE, S.STP', 'Merauke', '1984-07-24', 'Pembina (IV / b)', '2024-04-01', 'Kepala Bagian Otsus pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 16, 6, NULL, NULL, NULL, NULL, 'S-I', 'Ilmu Pemerintahan', 'IPDN', 2007, '423.7/407/XV/IPDN/2007', 40, 'Katolik', 'M.256805', 'laki-laki', 'OAP', NULL),
+(4, '19850818 200412 1 001', 'AGUSTINUS TARYUSRI, S,STP', 'Pemalang', '1985-08-18', 'Pembina (IV / a)', '2024-04-01', 'Kasubbag Evaluasi & Penyelenggaraan Pemerintahan Bag. Otsus pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 15, 6, NULL, NULL, NULL, NULL, 'D-IV', 'Ilmu Pemerintahan', 'IPDN', 2006, '423.7/761/XVI/IPDN/2008', 39, 'Islam', 'N.012762', 'laki-laki', 'Non-OAP', '2023-10-01'),
+(5, '19870706 200701 1 001', 'DESWY TATAWALAT, S.IP', 'Merauke', '1987-07-06', 'Pembina (IV / a)', '2020-04-01', 'Kasubbag Administrasi Kepala Daerah dan DPRD Bag. Otsus pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 14, 6, NULL, NULL, NULL, NULL, 'S-I', 'Ilmu Pemerintahan', 'IPDN', 2009, '423.7/0843/XVIII/IPDN/2009', 37, 'Islam', '6038440000000000', 'laki-laki', 'Non-OAP', NULL),
+(6, '19690701 199203 1 011', 'MUSLIMIN', 'Rantepao', '1969-07-01', 'Pembina (IV / a)', '2022-04-01', 'Pelaksana pada Subbag Administrasi Kepala Daerah dan DPRD Bag. Otsus pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-01', 27, 1, NULL, NULL, NULL, NULL, 'STM', 'STM', 'Santo Anthonius Merauke', 1989, '98 OC DM 0002972', 55, 'Islam', 'G.184573', 'laki-laki', 'Non-OAP', '2023-03-01'),
+(7, '19710823 199203 1 009', 'HASAN', 'Banda', '1971-08-23', 'Pembina (IV / a)', '2022-10-01', 'Pelaksana pada Subbag Evaluasi & Penyelenggaraan Pemerintahan Bag. Otsus pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-01', 27, 1, NULL, NULL, NULL, NULL, 'S-I', 'ILMU ADMINISTRASI NEGARA', 'STIA KARYA DHARMA', 2003, '1231003197', 53, 'Islam', 'F.329324', 'laki-laki', 'Non-OAP', '2023-03-01'),
+(8, '19740122 200112 1 004', 'JENSEN JANRI, S.Sos', 'Manado', '1974-01-22', 'Penata Tk. I (III / ', '2022-04-01', 'Kepala Bagian Kesra pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 17, 4, NULL, NULL, NULL, NULL, 'S-I', 'Ilmu Sosial', 'STIA KARYA DHARMA', 2005, '12310056', 50, 'Protestan', 'L.011484', 'laki-laki', 'Non-OAP', NULL),
+(9, '19730502 200012 2 002', 'EMILIA, S.E', 'Merauke', '1973-05-02', 'Penata Tk. I (III / ', '2013-04-01', 'Kasubbag Perpustakaan Bag. Kesra pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 23, 4, NULL, NULL, NULL, NULL, 'S-I', 'Ilmu Ekonomi', 'UNIVERSITAS CENDERAWASIH', 1997, '97.5.16.1.0.5203', 51, 'Katolik', 'K.029920', 'perempuan', 'Non-OAP', NULL),
+(10, '19831125 200212 2 001', 'FADILA, S.STP', 'Merauke', '1983-11-25', 'Penata Tk. I (III / ', '2016-10-01', 'Kasubbag Administrasi & Fasilitasi Penataan Wilayah Bag. Pemerintahan pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 17, 6, NULL, NULL, NULL, NULL, 'D-IV', 'Ilmu Pemerintahan', 'IPDN', 2006, '423.7/144/XIV/STPDN/2006', 41, 'Islam', 'M.019969', 'perempuan', 'Non-OAP', NULL),
+(11, '19740524 200605 1 001', 'ALEXIUS DARMAN RONGGO, S.Si', 'Elar', '1974-05-24', 'Penata Tk. I (III / ', '2021-10-01', 'Kasubbag Bina Mental Spritual Bag. Kesra pada Biro Pemerintahan, Otsus & Kesra Setda Provinsi Papua Selatan', '2023-04-03', 21, 3, NULL, NULL, NULL, NULL, 'S-I', 'Ilmu Sains', 'UNIV. ATMA JAYA YOGYAKARTA', 2002, '08 93 2002 080', 50, 'Katolik', 'P.687940', 'laki-laki', 'Non-OAP', NULL),
+(12, '19850608 200701 1 001', 'ERMA, S.IP', 'Sawaerma', '1985-06-08', 'Penata Tk. I (III / ', '2021-10-01', 'Kasubbag Tata Usaha Bag. Otsus pada Biro Pemerintahan, Otsus & Kesra Provinsi Papua Selatan', '2023-04-03', 14, 8, NULL, NULL, NULL, NULL, 'S-I', 'Ilmu Pemerintahan', 'IPDN', 2009, '423.7/1191/XVIII/IPDN/2009', 39, 'Islam', 'P.006107', 'laki-laki', 'Non-OAP', '2023-03-01');
 
 -- --------------------------------------------------------
 
@@ -110,7 +163,7 @@ INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `username_admin_bagian`, `p
 
 CREATE TABLE `tb_berkasdigital` (
   `id_berkas` int(11) NOT NULL,
-  `nip` int(18) NOT NULL,
+  `nip` varchar(50) NOT NULL,
   `nama_dokumen` varchar(50) NOT NULL,
   `kategori_dokumen` varchar(50) NOT NULL,
   `tanggal_upload` date NOT NULL,
@@ -139,7 +192,7 @@ CREATE TABLE `tb_galeri` (
 
 CREATE TABLE `tb_informasikepegawaian` (
   `id_info` int(11) NOT NULL,
-  `nip` int(18) NOT NULL,
+  `nip` varchar(100) NOT NULL,
   `riwayat_pendidikan` text NOT NULL,
   `riwayat_diklat` text NOT NULL,
   `riwayat_jabatan` text NOT NULL,
@@ -160,32 +213,10 @@ CREATE TABLE `tb_informasikepegawaian` (
 
 CREATE TABLE `tb_laporan` (
   `id` int(11) NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `file` varchar(255) NOT NULL,
+  `nama_pegawai` varchar(255) NOT NULL,
+  `dokumentasi` varchar(255) NOT NULL,
+  `file_laporan` varchar(255) NOT NULL,
   `tanggal` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_nominatif_asn`
---
-
-CREATE TABLE `tb_nominatif_asn` (
-  `nip` int(18) NOT NULL,
-  `nama_lengkap` varchar(50) NOT NULL,
-  `tempat_lahir` varchar(50) NOT NULL,
-  `tangga_lahir` date NOT NULL,
-  `jenis_kelamin` enum('laki-laki','perempuan','','') NOT NULL,
-  `agama` varchar(50) NOT NULL,
-  `status_perkawinan` varchar(50) NOT NULL,
-  `pangkat_golongan` varchar(50) NOT NULL,
-  `jabatan` varchar(50) NOT NULL,
-  `unit_kerja` varchar(50) NOT NULL,
-  `tmt_jabatan` date NOT NULL,
-  `pendidikan_terakhir` varchar(100) NOT NULL,
-  `jenis_kepegawaian` varchar(50) NOT NULL,
-  `status_aktif` enum('aktif','pensiun','meninggal','lainnya') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -196,7 +227,7 @@ CREATE TABLE `tb_nominatif_asn` (
 
 CREATE TABLE `tb_riwayat_kgp_kp` (
   `id_riwayat` int(11) NOT NULL,
-  `nip` int(18) NOT NULL,
+  `nip` varchar(100) NOT NULL,
   `jenis_kenaikan` enum('KGB','KP','','') NOT NULL,
   `pangkat_gol_sebelumnya` varchar(50) NOT NULL,
   `pangkat_gol_sekarang` varchar(50) NOT NULL,
@@ -207,6 +238,28 @@ CREATE TABLE `tb_riwayat_kgp_kp` (
   `file_sk` text NOT NULL,
   `status_proses` enum('sudah','belum','ditolak','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_sptsppd`
+--
+
+CREATE TABLE `tb_sptsppd` (
+  `id` int(11) NOT NULL,
+  `pegawai` varchar(200) NOT NULL,
+  `tujuan` varchar(100) NOT NULL,
+  `spt` varchar(100) NOT NULL,
+  `sppd` varchar(100) NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_sptsppd`
+--
+
+INSERT INTO `tb_sptsppd` (`id`, `pegawai`, `tujuan`, `spt`, `sppd`, `tanggal`) VALUES
+(2, 'Adi Prasetyo', 'Papua ', 'jkj', 'jkjk', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -294,6 +347,13 @@ ALTER TABLE `disposisi`
   ADD KEY `id_surat` (`id_surat`);
 
 --
+-- Indexes for table `nominatif_asn`
+--
+ALTER TABLE `nominatif_asn`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nip` (`nip`);
+
+--
 -- Indexes for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
@@ -334,17 +394,17 @@ ALTER TABLE `tb_laporan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_nominatif_asn`
---
-ALTER TABLE `tb_nominatif_asn`
-  ADD PRIMARY KEY (`nip`);
-
---
 -- Indexes for table `tb_riwayat_kgp_kp`
 --
 ALTER TABLE `tb_riwayat_kgp_kp`
   ADD PRIMARY KEY (`id_riwayat`),
   ADD KEY `nip` (`nip`);
+
+--
+-- Indexes for table `tb_sptsppd`
+--
+ALTER TABLE `tb_sptsppd`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_suratkeluar`
@@ -369,6 +429,12 @@ ALTER TABLE `tb_suratmasuk`
 --
 ALTER TABLE `disposisi`
   MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nominatif_asn`
+--
+ALTER TABLE `nominatif_asn`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_admin`
@@ -407,16 +473,16 @@ ALTER TABLE `tb_laporan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tb_nominatif_asn`
---
-ALTER TABLE `tb_nominatif_asn`
-  MODIFY `nip` int(18) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tb_riwayat_kgp_kp`
 --
 ALTER TABLE `tb_riwayat_kgp_kp`
   MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_sptsppd`
+--
+ALTER TABLE `tb_sptsppd`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_suratkeluar`
@@ -444,19 +510,19 @@ ALTER TABLE `disposisi`
 -- Constraints for table `tb_berkasdigital`
 --
 ALTER TABLE `tb_berkasdigital`
-  ADD CONSTRAINT `tb_berkasdigital_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_nominatif_asn` (`nip`);
+  ADD CONSTRAINT `tb_berkasdigital_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `nominatif_asn` (`nip`);
 
 --
 -- Constraints for table `tb_informasikepegawaian`
 --
 ALTER TABLE `tb_informasikepegawaian`
-  ADD CONSTRAINT `tb_informasikepegawaian_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_nominatif_asn` (`nip`);
+  ADD CONSTRAINT `tb_informasikepegawaian_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `nominatif_asn` (`nip`);
 
 --
 -- Constraints for table `tb_riwayat_kgp_kp`
 --
 ALTER TABLE `tb_riwayat_kgp_kp`
-  ADD CONSTRAINT `tb_riwayat_kgp_kp_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_nominatif_asn` (`nip`);
+  ADD CONSTRAINT `tb_riwayat_kgp_kp_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `nominatif_asn` (`nip`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

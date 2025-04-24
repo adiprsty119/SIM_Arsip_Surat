@@ -50,7 +50,65 @@ include "login/ceksession.php";
 
             <!-- page content -->
             <div class="right_col" role="main">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Informasi Kepegawaian ASN</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <form action="download_datanominatifasn.php" name="download_datanominatifasn" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <div>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Data</button></a>
+                            <a href="inputdatanominatifasn.php"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</button></a>
+                            <a href="printdatanominatifasn.php"><button type="button" class="btn btn-success"><i class="fa fa-print"></i> Print Dokumen</button></a>
+                        </div>
+                    </form>
+                    <div class="x_content">
+                        <table id="example" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIP</th>
+                                    <th>Riwayat Pendidikan</th>
+                                    <th>Riwayat Diklat</th>
+                                    <th>Riwayat Jabatan</th>
+                                    <th>Riwayat Mutasi</th>
+                                    <th>Riwayat Penghargaan</th>
+                                    <th>Tugas Belajar</th>
+                                    <th>Izin Belajar</th>
+                                    <th>Masa Kerja (Thn)</th>
+                                    <th>Masa Kerja (Bln)</th>
+                                    <th>Catatan Lain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                include "../koneksi/koneksi.php";
+                                $no = 1;
+                                $sql = mysqli_query($db, "SELECT * FROM tb_informasikepegawaian ORDER BY id_info ASC");
+                                while ($data = mysqli_fetch_array($sql)) {
+                                    echo "<tr>
+                                        <td>{$no}</td>
+                                        <td>{$data['nip']}</td>
+                                        <td>{$data['riwayat_pendidikan']}</td>
+                                        <td>{$data['riwayat_diklat']}</td>
+                                        <td>{$data['riwayat_jabatan']}</td>
+                                        <td>{$data['riwayat_mutasi']}</td>
+                                        <td>{$data['riwayat_penghargaan']}</td>
+                                        <td>" . ($data['tugas_belajar'] ? 'Ya' : 'Tidak') . "</td>
+                                        <td>" . ($data['izin_belajar'] ? 'Ya' : 'Tidak') . "</td>
+                                        <td>{$data['masa_kerja_tahun']}</td>
+                                        <td>{$data['masa_kerja_bulan']}</td>
+                                        <td>{$data['catatan_lain']}</td>
+                                        </tr>";
+                                    $no++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
             <!-- /page content -->
 
             <!-- footer content -->

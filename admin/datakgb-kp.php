@@ -50,7 +50,76 @@ include "login/ceksession.php";
 
             <!-- page content -->
             <div class="right_col" role="main">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Data KGB & KP ASN</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Riwayat Kenaikan ASN</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <form action="download_datanominatifasn.php" name="download_datanominatifasn" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <div>
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Data</button></a>
+                                    <a href="inputdatanominatifasn.php"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</button></a>
+                                    <a href="printdatanominatifasn.php"><button type="button" class="btn btn-success"><i class="fa fa-print"></i> Print Dokumen</button></a>
+                                </div>
+                            </form>
+                            <div class="x_content">
+                                <table id="example" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>NIP</th>
+                                            <th>Jenis Kenaikan</th>
+                                            <th>Pangkat Sebelumnya</th>
+                                            <th>Pangkat Sekarang</th>
+                                            <th>TMT Kenaikan</th>
+                                            <th>No. SK</th>
+                                            <th>Tanggal SK</th>
+                                            <th>Penandatangan SK</th>
+                                            <th>Status Proses</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include '../koneksi/koneksi.php';
+                                        $no = 1;
+                                        $sql = mysqli_query($db, "SELECT * FROM tb_riwayat_kgp_kp ORDER BY tmt_kenaikan DESC");
+                                        while ($data = mysqli_fetch_array($sql)) {
+                                            echo "<tr>
+                                                <td>$no</td>
+                                                <td>{$data['nip']}</td>
+                                                <td>{$data['jenis_kenaikan']}</td>
+                                                <td>{$data['pangkat_gol_sebelumnya']}</td>
+                                                <td>{$data['pangkat_gol_sekarang']}</td>
+                                                <td>{$data['tmt_kenaikan']}</td>
+                                                <td>{$data['no_sk']}</td>
+                                                <td>{$data['tanggal_sk']}</td>
+                                                <td>{$data['penandatanganan_sk']}</td>
+                                                <td>{$data['status_proses']}</td>
+                                                <td>
+                                                <a href='editdatakgb-kp.php?id={$data['id_riwayat']}' class='btn btn-warning btn-xs'><i class='fa fa-edit'></i> Edit</a>
+                                                <a href='hapusdatakgb-kp.php?id={$data['id_riwayat']}' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i> Hapus</a>
+                                                </td>
+                                            </tr>";
+                                            $no++;
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <!-- /page content -->
 
             <!-- footer content -->

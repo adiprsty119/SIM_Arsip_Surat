@@ -4,9 +4,9 @@ include '../../koneksi/koneksi.php';
 $id = $_POST['id'];
 $pegawai = $_POST['pegawai'];
 $tujuan = $_POST['tujuan'];
-$tanggal = date('Y-m-d');
+$tanggal = date('tanggal');
 
-$data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_spt_sppd WHERE id='$id'"));
+$data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_sptsppd WHERE id='$id'"));
 $folder = '../file_spt_sppd/';
 
 $spt = $data['spt'];
@@ -21,7 +21,7 @@ if (!empty($_FILES['sppd']['name'])) {
     move_uploaded_file($_FILES['sppd']['tmp_name'], $folder . $sppd);
 }
 
-$query = "UPDATE tb_spt_sppd SET pegawai='$pegawai', tujuan='$tujuan', spt='$spt', sppd='$sppd', tanggal='$tanggal' WHERE id='$id'";
+$query = "UPDATE tb_sptsppd SET pegawai='$pegawai', tujuan='$tujuan', spt='$spt', sppd='$sppd', tanggal='$tanggal' WHERE id='$id'";
 mysqli_query($db, $query);
 
 echo "<script>alert('Data berhasil diupdate'); window.location='../spt_sppd.php';</script>";

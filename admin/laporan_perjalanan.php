@@ -96,12 +96,12 @@ include "../koneksi/koneksi.php";
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            $query = mysqli_query($db, "SELECT * FROM tb_laporan_perjalanan ORDER BY id DESC");
+                                            $query = mysqli_query($db, "SELECT * FROM tb_laporan ORDER BY id DESC");
                                             while ($data = mysqli_fetch_assoc($query)) {
                                                 echo "<tr>
                                                     <td>{$no}</td>
-                                                    <td>{$data['pegawai']}</td>
-                                                    <td><a href='file_laporan/{$data['laporan']}' target='_blank'>Lihat Laporan</a></td>
+                                                    <td>{$data['nama_pegawai']}</td>
+                                                    <td><a href='file_laporan/{$data['file_laporan']}' target='_blank'>Lihat Laporan</a></td>
                                                     <td><a href='file_laporan/{$data['dokumentasi']}' target='_blank'>Lihat Dokumentasi</a></td>
                                                     <td>{$data['tanggal']}</td>
                                                     <td><a href='edit_laporan_perjalanan.php?id={$data['id']}' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
