@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2025 at 07:48 AM
+-- Generation Time: Apr 25, 2025 at 08:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -221,15 +221,15 @@ CREATE TABLE `tb_informasikepegawaian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_laporan`
+-- Table structure for table `tb_laporan_perjalanan`
 --
 
-CREATE TABLE `tb_laporan` (
+CREATE TABLE `tb_laporan_perjalanan` (
   `id` int(11) NOT NULL,
-  `nama_pegawai` varchar(255) NOT NULL,
+  `pegawai` varchar(255) NOT NULL,
+  `laporan` varchar(255) NOT NULL,
   `dokumentasi` varchar(255) NOT NULL,
-  `file_laporan` varchar(255) NOT NULL,
-  `tanggal` date NOT NULL
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -402,9 +402,9 @@ ALTER TABLE `tb_informasikepegawaian`
   ADD KEY `nip` (`nip`);
 
 --
--- Indexes for table `tb_laporan`
+-- Indexes for table `tb_laporan_perjalanan`
 --
-ALTER TABLE `tb_laporan`
+ALTER TABLE `tb_laporan_perjalanan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -481,9 +481,9 @@ ALTER TABLE `tb_informasikepegawaian`
   MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tb_laporan`
+-- AUTO_INCREMENT for table `tb_laporan_perjalanan`
 --
-ALTER TABLE `tb_laporan`
+ALTER TABLE `tb_laporan_perjalanan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
