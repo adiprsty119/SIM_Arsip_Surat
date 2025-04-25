@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sppd_path = $upload_dir . $sppd_name;
 
     if (move_uploaded_file($spt['tmp_name'], $spt_path) && move_uploaded_file($sppd['tmp_name'], $sppd_path)) {
-        $query = "INSERT INTO tb_spt_sppd (pegawai, tujuan, spt, sppd, tanggal) 
+        $query = "INSERT INTO tb_sptsppd (pegawai, tujuan, spt, sppd, tanggal) 
                   VALUES ('$pegawai', '$tujuan', '$spt_name', '$sppd_name', '$tanggal')";
         mysqli_query($db, $query);
         echo "<script>alert('Data berhasil disimpan'); window.location='../spt_sppd.php';</script>";

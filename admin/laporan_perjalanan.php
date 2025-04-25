@@ -60,9 +60,9 @@ include "../koneksi/koneksi.php";
                                                 <select name="pegawai" class="form-control" required>
                                                     <option value="">-- Pilih Pegawai --</option>
                                                     <?php
-                                                    $queryPegawai = mysqli_query($db, "SELECT nama_lengkap, nama_bagian FROM tb_bagian ORDER BY nama_lengkap ASC");
+                                                    $queryPegawai = mysqli_query($db, "SELECT nip, nama_lengkap FROM nominatif_asn ORDER BY nama_lengkap ASC");
                                                     while ($pegawai = mysqli_fetch_array($queryPegawai)) {
-                                                        $label = "{$pegawai['nama_lengkap']} ({$pegawai['nama_bagian']})";
+                                                        $label = "{$pegawai['nip']} ({$pegawai['nama_lengkap']})";
                                                         echo "<option value='{$pegawai['nama_lengkap']}'>{$label}</option>";
                                                     }
                                                     ?>
