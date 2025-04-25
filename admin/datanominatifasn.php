@@ -67,7 +67,7 @@ include "login/ceksession.php";
 
                         <div class="x_content">
                             <!-- Tombol Tambah Form -->
-                            <button class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data Perjalanan</button>
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
 
                             <!-- Form Tambah -->
                             <div id="formSPT" class="collapse" style="margin-top: 20px;">
