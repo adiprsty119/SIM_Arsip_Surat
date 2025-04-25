@@ -32,11 +32,11 @@ include "koneksi/ceksession.php";
         <header id="main-header">
           <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-              <div class="navbar-header" style="display: flex; align-items: center;">
+              <div class="navbar-header" style="display: flex; justify-content: left">
                 <a href="#">
-                  <img src="img/logo_PPS.png" alt="Logo PPS" style="width: 5rem; margin-right: 10px;">
+                  <img src="img/logo_PPS.png" alt="Logo PPS" style="width: 5rem; margin-top: 0.5rem; margin-right: 2rem;">
                 </a>
-                <a class="navbar-brand" href="#" style="padding-top: 0; padding-bottom: 0;">
+                <a class="navbar-brand" href="#" style="padding-top: 1.3rem; padding-bottom: 0;">
                   ARSIP SURAT <span class="logo-dec">Pemerintah Provinsi Papua Selatan</span>
                 </a>
               </div>
@@ -70,6 +70,9 @@ include "koneksi/ceksession.php";
                 <h3 class="bnr-sub-title">SISTEM INFORMASI PENGARSIPAN SURAT INTERNAL</h3>
                 <h3 class="bnr-sub-title"><span class="logo-dec">BIRO PEMERINTAHAN, OTSUS DAN KESRA</span></h3>
                 <h3 class="bnr-sub-title"><span class="logo-dec">SETDA PROVINSI PAPUA SELATAN</span></h3>
+                <div class="logo-biro" style="margin-top: 4rem;">
+                  <img src="img/logo_biro.png" style="width: 20rem;">
+                </div>
               </div>
             </div>
           </div>
