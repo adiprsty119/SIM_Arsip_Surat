@@ -2,7 +2,7 @@
 include '../../koneksi/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $pegawai = mysqli_real_escape_string($db, $_POST['nama_pegawai']);
+    $pegawai = mysqli_real_escape_string($db, $_POST['pegawai']);
     $tanggal = date('Y-m-d');
 
     $laporan    = $_FILES['file_laporan'];
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploadDokumentasi = move_uploaded_file($dokumentasi['tmp_name'], $dokumentasi_path);
 
     if ($uploadLaporan && $uploadDokumentasi) {
-        $query = "INSERT INTO tb_laporan (nama_pegawai, dokumentasi, file_laporan, tanggal) 
+        $query = "INSERT INTO tb_laporan_perjalanan (pegawai, dokumentasi, laporan, tanggal) 
                   VALUES ('$pegawai', '$laporan_name', '$dokumentasi_name', '$tanggal')";
         $insert = mysqli_query($db, $query);
 

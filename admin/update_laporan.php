@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (move_uploaded_file($tmp, $target)) {
                 // Update data di database dengan file baru
-                $query = "UPDATE tb_laporan SET judul = '$judul', file = '$nama_file', tanggal = '$tanggal' WHERE id = '$id'";
+                $query = "UPDATE tb_laporan_perjalanan SET judul = '$judul', file = '$nama_file', tanggal = '$tanggal' WHERE id = '$id'";
                 $update = mysqli_query($db, $query);
 
                 if ($update) {
