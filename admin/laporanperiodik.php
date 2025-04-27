@@ -89,7 +89,7 @@ include "login/ceksession.php";
                                             <?php
                                             include '../koneksi/koneksi.php';
                                             $no = 1;
-                                            $sql = mysqli_query($db, "SELECT * FROM tb_laporan ORDER BY id DESC");
+                                            $sql = mysqli_query($db, "SELECT * FROM tb_laporan_perjalanan ORDER BY id DESC");
                                             while ($data = mysqli_fetch_array($sql)) {
                                                 echo "<tr>
                                                 <td>{$no}</td>
