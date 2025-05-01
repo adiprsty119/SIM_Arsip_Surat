@@ -20,6 +20,46 @@ include "koneksi/ceksession.php";
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="shortcut icon" href="img/icon.ico">
 
+  <style>
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      text-align: center;
+      position: relative;
+    }
+
+    .slide-img {
+      width: 50%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .caption {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .caption p {
+      bottom: 8px;
+      left: 16px;
+      margin-top: 1rem;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -32,31 +72,35 @@ include "koneksi/ceksession.php";
         <header id="main-header">
           <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-              <div class="navbar-header" style="display: flex; justify-content: left">
+              <div class="navbar-header" style="display: flex; align-items: center;">
                 <a href="#">
-                  <img src="img/logo_PPS.png" alt="Logo PPS" style="width: 5rem; margin-top: 0.5rem; margin-right: 2rem;">
+                  <img src="img/logo_PPS.png" alt="Logo PPS" style="width: 5rem; margin-top: 0.5rem; margin-right: 1rem;">
                 </a>
-                <a class="navbar-brand" href="#" style="padding-top: 1.3rem; padding-bottom: 0;">
+                <a class="navbar-brand" href="#" style="padding-top: 1.5rem; padding-bottom: 0;">
                   ARSIP SURAT <span class="logo-dec">Pemerintah Provinsi Papua Selatan</span>
                 </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
               </div>
+
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="active"><a href="#main-header">Beranda</a></li>
-                  <li class=""><a href="#feature">Tentang</a></li>
-                  <li class=""><a href="#portfolio">Pengembang</a></li>
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="">
-                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="" alt="">Masuk
-                        <span class=" fa fa-angle-down"></span>
-                      </a>
-                      <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="admin/login"><i class="fa fa-sign-out pull-right"></i> Admin</a></li>
-                        <li><a href="bagian/login"><i class="fa fa-sign-out pull-right"></i> Bagian</a></li>
-                      </ul>
-                    </li>
-                  </ul>
+                  <li><a href="#feature">Tentang</a></li>
+                  <li><a href="#portfolio">Pengembang</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      Masuk <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="admin/login"><i class="fa fa-sign-in"></i> Admin</a></li>
+                      <li><a href="bagian/login"><i class="fa fa-sign-in"></i> Bagian</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -79,7 +123,44 @@ include "koneksi/ceksession.php";
         </div>
       </div>
     </div>
-    <!--/ HEADER-->
+    <!--HEADER-->
+
+    <!-- Tampilan Berita -->
+    <section id="news" class="section-padding wow fadeIn delay-05s text-center">
+      <h2 class="service-title pad-bt15">SEKILAS BERITA</h2>
+      <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide">
+          <img src="img/fotbar_biro.jpg" class="slide-img" alt="Dokumentasi 1">
+          <div class="caption">
+            <p>Kegiatan rapat koordinasi pembangunan provinsi Papua Selatan.</p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <img src="img/grand_design_kantorgub_ps.jpg" class="slide-img" alt="Dokumentasi 2">
+          <div class="caption">
+            <p>Penyerahan dokumen resmi oleh Gubernur kepada perwakilan kabupaten.</p>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+          <img src="img/fotbar_biro.jpg" class="slide-img" alt="Dokumentasi 3">
+          <div class="caption">
+            <p>Sosialisasi program arsip digital kepada masyarakat lokal.</p>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide">
+          <img src="img/grand_design_kantorgub_ps.jpg" class="slide-img" alt="Dokumentasi 4">
+          <div class="caption">
+            <p>Kunjungan kerja ke distrik perbatasan untuk monitoring kearsipan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Tampilan Berita -->
+
     <!---->
     <section id="feature" class="section-padding wow fadeIn delay-05s">
       <div class="container">
@@ -213,6 +294,22 @@ include "koneksi/ceksession.php";
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
 
-</body>
+  <script>
+    let slideIndex = 0;
+
+    function showSlides() {
+      const slides = document.querySelectorAll(".slide");
+
+      slides.forEach(slide => slide.style.display = "none");
+
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 4000); // Ganti tiap 4 detik
+    }
+
+    document.addEventListener("DOMContentLoaded", showSlides);
+  </script>
 
 </html>

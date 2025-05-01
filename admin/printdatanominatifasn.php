@@ -11,21 +11,26 @@ include '../koneksi/koneksi.php';
     <style>
         @media print {
             @page {
-                size: A4 portrait;
+                size: A4 landscape;
                 margin: 20mm;
             }
         }
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 13px;
+            font-size: 6px;
             color: #000;
-            padding: 20px;
+            padding: 10px;
         }
 
         .kop {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
             text-align: center;
+            font-size: 1rem;
             margin-bottom: 20px;
+            gap: 3rem;
         }
 
         .kop h2,
@@ -35,6 +40,14 @@ include '../koneksi/koneksi.php';
 
         .kop p {
             margin: 5px 0;
+        }
+
+        .kop .logo-pemprov img {
+            width: 5.5rem;
+        }
+
+        .kop .logo-biro img {
+            width: 5rem;
         }
 
         hr {
@@ -68,13 +81,21 @@ include '../koneksi/koneksi.php';
 <body onload="window.print()">
 
     <div class="kop">
-        <h2>BIRO PEMERINTAHAN, OTSUS DAN KESRA</h2>
-        <h3>SETDA PROVINSI PAPUA SELATAN</h3>
-        <p>Jl. Alamat No. 1, Merauke - Papua Selatan</p>
+        <div class="logo-pemprov">
+            <img src="../img/logo_PPS.png">
+        </div>
+        <div class="nomenklatur">
+            <h2>BIRO PEMERINTAHAN, OTSUS DAN KESRA</h2>
+            <h3>SETDA PROVINSI PAPUA SELATAN</h3>
+            <p>Jl. Alamat No. 1, Merauke - Papua Selatan</p>
+        </div>
+        <div class="logo-biro">
+            <img src="../img/logo_biro.png">
+        </div>
     </div>
     <hr>
 
-    <h3 style="text-align:center; margin-bottom: 20px;">DATA NOMINATIF ASN</h3>
+    <h3 style="text-align:center; margin-bottom: 20px; font-size: 1rem;">DATA NOMINATIF ASN</h3>
 
     <table>
         <thead>
@@ -84,11 +105,27 @@ include '../koneksi/koneksi.php';
                 <th>Nama Lengkap</th>
                 <th>Tempat Lahir</th>
                 <th>Tanggal Lahir</th>
-                <th>Pangkat / Golongan</th>
-                <th>TMT Pangkat</th>
-                <th>Jabatan</th>
-                <th>Pendidikan</th>
-                <th>Tahun Lulus</th>
+                <th>Usia</th>
+                <th>Jenis Kelamin</th>
+                <th>Agama</th>
+                <th>Pangkat Golongan</th>
+                <th>Pangkat TMT</th>
+                <th>Nama Jabatan Eselon</th>
+                <th>Jabatan Eselon TMT</th>
+                <th>Bulan Masa Kerja</th>
+                <th>Tahun Masa Kerja</th>
+                <th>Diklat yang diikuti</th>
+                <th>Bulan Diklat</th>
+                <th>Tahun Diklat</th>
+                <th>Jumlah Jam Diklat yang diikuti</th>
+                <th>Asal</th>
+                <th>Tingkat Pendidikan Terakhir</th>
+                <th>Jurusan Pada Tingkat Pendidikan Terakhir</th>
+                <th>Nama Instansi/Perguruan Tinggi</th>
+                <th>Tahun Lulus Pendidikan Terakhir</th>
+                <th>Nomor Ijazah Pendidikan Terakhir</th>
+                <th>Karpeg</th>
+                <th>KGB</th>
             </tr>
         </thead>
         <tbody>
@@ -102,11 +139,27 @@ include '../koneksi/koneksi.php';
                     <td>{$data['nama_lengkap']}</td>
                     <td>{$data['tempat_lahir']}</td>
                     <td>{$data['tanggal_lahir']}</td>
+                    <td>{$data['usia']}</td>
+                    <td>{$data['jenis_kelamin']}</td>
+                    <td>{$data['agama']}</td>
                     <td>{$data['pangkat_golongan']}</td>
                     <td>{$data['pangkat_tmt']}</td>
                     <td>{$data['nama_jabatan_eselon']}</td>
+                    <td>{$data['jabatan_eselon_tmt']}</td>
+                    <td>{$data['bulan_masakerja']}</td>
+                    <td>{$data['tahun_masakerja']}</td>
+                    <td>{$data['nama_diklat']}</td>
+                    <td>{$data['bulan_diklat']}</td>
+                    <td>{$data['tahun_diklat']}</td>
+                    <td>{$data['jumlah_jam_diklat']}</td>
+                    <td>{$data['asal']}</td>
                     <td>{$data['tingkat_pendidikan_terakhir']}</td>
+                    <td>{$data['jurusan']}</td>
+                    <td>{$data['instansi_sekolah']}</td>
                     <td>{$data['tahun_lulus_pendidikan']}</td>
+                    <td>{$data['no_ijazah']}</td>
+                    <td>{$data['karpeg']}</td>
+                    <td>{$data['kgb']}</td>
                 </tr>";
                 $no++;
             }
