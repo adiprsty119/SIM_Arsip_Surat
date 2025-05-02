@@ -54,8 +54,8 @@ include "ceksessionn.php";
 
             <div class="separator">
               <div>
-                <h2><i class="fa fa-institution"></i> PEMKOT SAMARINDA</h2>
-                <p>©2017 ILMU KOMPUTER UNMUL</p>
+                <h2><i class="fa fa-institution"></i> BIRO PEMERINTAHAN, OTSUS DAN KESRA SETDA PEMERINTAH PROVINSI PAPUA SELATAN</h2>
+                <p>©2025 TEKNIK INFORMATIKA UNMUS</p>
               </div>
             </div>
           </form>

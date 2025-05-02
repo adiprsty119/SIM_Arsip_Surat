@@ -13,52 +13,14 @@ include "koneksi/ceksession.php";
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300|Raleway:300,400,900,700italic,700,300,600">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/animate.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style-news.css">
   <link rel="shortcut icon" href="img/icon.ico">
-
-  <style>
-    .slideshow-container {
-      position: relative;
-      max-width: 100%;
-      margin: auto;
-      overflow: hidden;
-    }
-
-    .slide {
-      display: none;
-      text-align: center;
-      position: relative;
-    }
-
-    .slide-img {
-      width: 50%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .caption {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .caption p {
-      bottom: 8px;
-      left: 16px;
-      margin-top: 1rem;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 8px 16px;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-  </style>
 
 </head>
 
@@ -71,8 +33,8 @@ include "koneksi/ceksession.php";
       <div class="bg-color">
         <header id="main-header">
           <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-              <div class="navbar-header" style="display: flex; align-items: center;">
+            <div class="container" style="display: flex; flex-direction: row; justify-content:space-around; width: 100%">
+              <div class="navbar-header" style="display: flex;">
                 <a href="#">
                   <img src="img/logo_PPS.png" alt="Logo PPS" style="width: 5rem; margin-top: 0.5rem; margin-right: 1rem;">
                 </a>
@@ -90,6 +52,7 @@ include "koneksi/ceksession.php";
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="active"><a href="#main-header">Beranda</a></li>
+                  <li><a href="#news">Sekilas Berita</a></li>
                   <li><a href="#feature">Tentang</a></li>
                   <li><a href="#portfolio">Pengembang</a></li>
                   <li class="dropdown">
@@ -128,41 +91,56 @@ include "koneksi/ceksession.php";
     <!-- Tampilan Berita -->
     <section id="news" class="section-padding wow fadeIn delay-05s text-center">
       <h2 class="service-title pad-bt15">SEKILAS BERITA</h2>
-      <div class="slideshow-container">
-        <!-- Slide 1 -->
-        <div class="slide">
-          <img src="img/fotbar_biro.jpg" class="slide-img" alt="Dokumentasi 1">
-          <div class="caption">
-            <p>Kegiatan rapat koordinasi pembangunan provinsi Papua Selatan.</p>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="slider-item swiper-slide">
+            <div class="slider-image-wrapper">
+              <img class="slider-image" src="img/fotbar_biro.jpg" alt="SliderImg">
+            </div>
+            <div class="slider-item-content">
+              <h1>Exploring Italy's Beauty</h1>
+              <p>Discover the breathtaking landscapes, rich history, and delectable cuisine of Italy in this mesmerizing journey.</p>
+            </div>
+          </div>
+          <div class="slider-item swiper-slide">
+            <div class="slider-image-wrapper">
+              <img class="slider-image" src="https://images.unsplash.com/photo-1491900177661-4e1cd2d7cce2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80" alt="SliderImg">
+            </div>
+            <div class="slider-item-content">
+              <h1>Exploring Hidden Bunkers</h1>
+              <p>Uncover the secrets of underground bunkers and their historical significance in this thrilling adventure.</p>
+            </div>
+          </div>
+          <div class="slider-item swiper-slide">
+            <div class="slider-image-wrapper">
+              <img class="slider-image" src="https://images.unsplash.com/photo-1482192505345-5655af888cc4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2600&q=80" alt="SliderImg">
+            </div>
+            <div class="slider-item-content">
+              <h1>Scaling Small Mountains</h1>
+              <p>Embark on an adventurous journey to conquer the challenging peaks of small mountains and embrace the thrill of the climb.</p>
+            </div>
+          </div>
+          <div class="slider-item swiper-slide">
+            <div class="slider-image-wrapper">
+              <img class="slider-image" src="https://images.unsplash.com/photo-1564604761388-83eafc96f668?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=801.2.1&auto=format&fit=crop&w=2167&q=80" alt="SliderImg">
+            </div>
+            <div class="slider-item-content">
+              <h1>Walking On a Dream</h1>
+              <p>Experience the dreamlike landscapes and surreal beauty of distant lands in this enchanting expedition.</p>
+            </div>
           </div>
         </div>
-        <!-- Slide 2 -->
-        <div class="slide">
-          <img src="img/grand_design_kantorgub_ps.jpg" class="slide-img" alt="Dokumentasi 2">
-          <div class="caption">
-            <p>Penyerahan dokumen resmi oleh Gubernur kepada perwakilan kabupaten.</p>
-          </div>
+        <div class="slider-buttons">
+          <button class="swiper-button-prev">Prev</button>
+          <button class="swiper-button-next">Next</button>
         </div>
-        <!-- Slide 3 -->
-        <div class="slide">
-          <img src="img/fotbar_biro.jpg" class="slide-img" alt="Dokumentasi 3">
-          <div class="caption">
-            <p>Sosialisasi program arsip digital kepada masyarakat lokal.</p>
-          </div>
-        </div>
-        <!-- Slide 4 -->
-        <div class="slide">
-          <img src="img/grand_design_kantorgub_ps.jpg" class="slide-img" alt="Dokumentasi 4">
-          <div class="caption">
-            <p>Kunjungan kerja ke distrik perbatasan untuk monitoring kearsipan.</p>
-          </div>
-        </div>
+        <div class="swiper-pagination"></div>
       </div>
     </section>
     <!-- Tampilan Berita -->
 
     <!---->
-    <section id="feature" class="section-padding wow fadeIn delay-05s">
+    <section id="feature" class="section-padding wow fadeIn delay-05s" style="margin-top: 5%;">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -198,7 +176,7 @@ include "koneksi/ceksession.php";
     </section>
     <!---->
     <!---->
-    <section id="portfolio" class="section-padding wow fadeInUp delay-05s">
+    <section id="portfolio" class="section-padding wow fadeInUp delay-05s" style="margin-top: 5%;">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -293,23 +271,9 @@ include "koneksi/ceksession.php";
   <script src="js/jquery.bxslider.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
-
-  <script>
-    let slideIndex = 0;
-
-    function showSlides() {
-      const slides = document.querySelectorAll(".slide");
-
-      slides.forEach(slide => slide.style.display = "none");
-
-      slideIndex++;
-      if (slideIndex > slides.length) slideIndex = 1;
-
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(showSlides, 4000); // Ganti tiap 4 detik
-    }
-
-    document.addEventListener("DOMContentLoaded", showSlides);
-  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js'></script>
+  <script src="js/script.js"></script>
+</body>
 
 </html>

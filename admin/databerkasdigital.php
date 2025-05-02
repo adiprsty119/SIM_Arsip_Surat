@@ -63,49 +63,100 @@ include "login/ceksession.php";
                             <h2>Daftar Berkas Digital</h2>
                             <div class="clearfix"></div>
                         </div>
-                        <form action="download_datanominatifasn.php" name="download_datanominatifasn" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                            <div>
-                                <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Data</button></a>
-                                <a href="inputdatanominatifasn.php"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</button></a>
-                                <a href="printdatanominatifasn.php"><button type="button" class="btn btn-success"><i class="fa fa-print"></i> Print Dokumen</button></a>
+
+                        <div class="x_content">
+                            <!-- Tombol Tambah Form -->
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
+
+                            <!-- Form Tambah -->
+                            <div id="formSPT" class="collapse" style="margin-top: 20px;">
+                                <form action="proses/simpandata_berkasdigital.php" method="post" enctype="multipart/form-data">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nip">NIP</label>
+                                            <select name="nip" class="form-control" required>
+                                                <option value="">-- Pilih NIP Pegawai --</option>
+                                                <?php
+                                                $queryNIPPegawai = mysqli_query($db, "SELECT nip, nama_lengkap FROM nominatif_asn ORDER BY nip ASC");
+                                                while ($pegawai = mysqli_fetch_array($queryNIPPegawai)) {
+                                                    $label = "{$pegawai['nip']} ({$pegawai['nama_lengkap']})";
+                                                    echo "<option value='{$pegawai['nip']}'>{$label}</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nama_dokumen">Nama Dokumen</label>
+                                            <input type="text" name="nama_dokumen" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="kategori">Kategori</label>
+                                            <input type="text" name="kategori" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tanggal_upload">Tanggal Upload</label>
+                                            <input type="date" name="tanggal_upload" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="upload_file">Upload File</label>
+                                            <input type="file" name="upload_file" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="keterangan">Keterangan</label>
+                                            <input type="text" name="keterangan" class="form-control" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Simpan</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <table id="example" class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NIP</th>
-                                    <th>Nama Dokumen</th>
-                                    <th>Kategori</th>
-                                    <th>Tanggal Upload</th>
-                                    <th>File</th>
-                                    <th>Keterangan</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                include '../koneksi/koneksi.php';
-                                $no = 1;
-                                $query = mysqli_query($db, "SELECT * FROM tb_berkasdigital ORDER BY id_berkas DESC");
-                                while ($data = mysqli_fetch_array($query)) {
-                                    echo "<tr>";
-                                    echo "<td>" . $no++ . "</td>";
-                                    echo "<td>" . $data['nip'] . "</td>";
-                                    echo "<td>" . $data['nama_dokumen'] . "</td>";
-                                    echo "<td>" . $data['kategori_dokumen'] . "</td>";
-                                    echo "<td>" . date("d-m-Y", strtotime($data['tanggal_upload'])) . "</td>";
-                                    echo "<td><a href='../berkas/" . $data['file_path'] . "' target='_blank'>Lihat File</a></td>";
-                                    echo "<td>" . $data['keterangan'] . "</td>";
-                                    echo "<td>
-                                <a href='editberkas.php?id=" . $data['id_berkas'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
-                                <a href='hapusberkas.php?id=" . $data['id_berkas'] . "' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></a>
-                            </td>";
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+
+                            <hr>
+
+                            <form action="download_databerkasdigital.php" name="download_databerkasdigital" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <div>
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Data</button></a>
+                                    <a href="printdata_berkasdigital.php"><button type="button" class="btn btn-success"><i class="fa fa-print"></i> Print Dokumen</button></a>
+                                </div>
+                            </form>
+                            <div class="x_content table-responsive">
+                                <table id="example" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>NIP</th>
+                                            <th>Nama Dokumen</th>
+                                            <th>Kategori Dokumen</th>
+                                            <th>Tanggal Upload</th>
+                                            <th>File</th>
+                                            <th>Keterangan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include '../koneksi/koneksi.php';
+                                        $no = 1;
+                                        $query = mysqli_query($db, "SELECT * FROM tb_berkasdigital ORDER BY id_berkas DESC");
+                                        while ($data = mysqli_fetch_array($query)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $no++ . "</td>";
+                                            echo "<td>" . $data['nip'] . "</td>";
+                                            echo "<td>" . $data['nama_dokumen'] . "</td>";
+                                            echo "<td>" . $data['kategori_dokumen'] . "</td>";
+                                            echo "<td>" . date("d-m-Y", strtotime($data['tanggal_upload'])) . "</td>";
+                                            echo "<td><a href='../berkas/" . $data['file_path'] . "' target='_blank'>Lihat File</a></td>";
+                                            echo "<td>" . $data['keterangan'] . "</td>";
+                                            echo "<td>
+                                                <a href='editberkas.php?id=" . $data['id_berkas'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
+                                                <a href='hapusberkas.php?id=" . $data['id_berkas'] . "' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></a>
+                                            </td>";
+                                            echo "</tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

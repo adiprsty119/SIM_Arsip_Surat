@@ -801,9 +801,11 @@ Responsive media queries
   .loction-info {
     margin-bottom: 15px;
   }
+
   .portfolio-item figure figcaption {
     padding: 55px 30px;
   }
+
   .padding-right-zero {
     padding-right: 15px !important;
   }
@@ -823,18 +825,23 @@ Responsive media queries
     padding-left: 16px;
     margin-top: 0px;
   }
+
   .banner-info {
     padding-top: 40px;
   }
+
   h1.bnr-title {
     font-size: 16px;
   }
+
   h2.bnr-sub-title {
     font-size: 33px;
   }
+
   body {
     font-size: 14px;
   }
+
   .btn-download,
   .btn-more,
   .btn-download:hover,
@@ -844,45 +851,87 @@ Responsive media queries
     font-size: 12px;
     padding: 7px 18px;
   }
+
   .wrap-item h3 {
     font-size: 18px;
   }
+
   .title,
   .service-title {
     font-size: 28px;
   }
+
   .sub-title {
     font-size: 15px;
   }
+
   .service-item,
   .blog-sec,
   .wrap-item,
   .loction-info {
     margin-bottom: 15px;
   }
+
   .loction-info {
     padding: 0px 15px;
   }
+
   .portfolio-item figure figcaption {
     padding: 30px 30px;
   }
+
   .padding-right-zero {
     padding-right: 15px !important;
   }
+
   .portfolio-item figure p {
     font-size: 14px;
   }
+
   .portfolio-item figure h2 {
     font-size: 18px;
   }
+
   .testimonial-item ul li blockquote {
     font-size: 14px;
     line-height: 22px;
     margin: 10px 0;
     padding: 0 40px;
   }
+
   .navbar-default .navbar-nav > li > a {
     line-height: 22px;
     text-align: center;
   }
+}
+
+.slide {
+  display: none;
+  text-align: center;
+  position: relative;
+}
+
+.slide-img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.caption {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.caption p {
+  bottom: 8px;
+  left: 16px;
+  margin-top: 1rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
 }
