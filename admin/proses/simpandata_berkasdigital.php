@@ -2,10 +2,11 @@
 include '../../koneksi/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $pegawai         = mysqli_real_escape_string($db, $_POST['pegawai']);
+    $nip    = mysqli_real_escape_string($db, $_POST['nip']);
     $nama_dokumen    = mysqli_real_escape_string($db, $_POST['nama_dokumen']);
-    $kategori        = mysqli_real_escape_string($db, $_POST['kategori_dokumen']);
+    $kategori_dokumen       = mysqli_real_escape_string($db, $_POST['kategori_dokumen']);
     $tanggal_upload  = mysqli_real_escape_string($db, $_POST['tanggal_upload']);
+    $file_path  = mysqli_real_escape_string($db, $_POST['file_path']);
     $keterangan      = mysqli_real_escape_string($db, $_POST['keterangan']);
 
     $upload_file     = $_FILES['upload_file'];
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Upload
     if (move_uploaded_file($upload_file['tmp_name'], $file_path)) {
         $query = "INSERT INTO tb_berkasdigital (nip, nama_dokumen, kategori_dokumen, tanggal_upload, file_path, keterangan) 
-                  VALUES ('$pegawai', '$nama_dokumen', '$kategori', '$tanggal_upload', '$safe_name', '$keterangan')";
+                  VALUES ('$nip', '$nama_dokumen', '$kategori_dokumen', '$tanggal_upload', '$file_path', '$keterangan')";
 
         if (mysqli_query($db, $query)) {
             echo "<script>alert('Data berhasil disimpan'); window.location='../databerkasdigital.php';</script>";

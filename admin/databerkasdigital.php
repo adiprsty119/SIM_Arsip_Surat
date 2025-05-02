@@ -147,9 +147,9 @@ include "login/ceksession.php";
                                             echo "<td><a href='../berkas/" . $data['file_path'] . "' target='_blank'>Lihat File</a></td>";
                                             echo "<td>" . $data['keterangan'] . "</td>";
                                             echo "<td>
-                                                <a href='editberkas.php?id=" . $data['id_berkas'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
-                                                <a href='hapusberkas.php?id=" . $data['id_berkas'] . "' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></a>
-                                            </td>";
+                                                    <a href='editberkasdigital.php?id_berkas=" . $data['id_berkas'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
+                                                    <a href='proses/hapusberkas.php?id_berkas=" . $data['id_berkas'] . "' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></a>
+                                                </td>";
                                             echo "</tr>";
                                         }
                                         ?>

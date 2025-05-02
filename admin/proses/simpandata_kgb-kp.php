@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tmt_kenaikan            = mysqli_real_escape_string($db, $_POST['tmt_kenaikan']);
     $no_sk                   = mysqli_real_escape_string($db, $_POST['no_sk']);
     $tanggal_sk              = mysqli_real_escape_string($db, $_POST['tanggal_sk']);
-    $penandatangan_sk        = mysqli_real_escape_string($db, $_POST['penandatangan_sk']);
+    $penandatangan_sk        = mysqli_real_escape_string($db, $_POST['penandatanganan_sk']);
     $status_proses           = mysqli_real_escape_string($db, $_POST['status_proses']);
 
     $file_sk = null;
@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Query insert disesuaikan apakah ada file atau tidak
-    $query = "INSERT INTO riwayat_kpp_kp (nip, jenis_kenaikan, pangkat_gol_sebelumnya, pangkat_gol_sekarang, tmt_kenaikan, no_sk, tanggal_sk, penandatanganan_sk, file_sk, status_proses)
-              VALUES ('$nip', '$jenis_kenaikan', '$pangkat_gol_sebelumnya', '$pangkat_gol_sekarang', '$tmt_kenaikan', '$no_sk', '$tanggal_sk', '$penandatangan_sk', " . ($file_sk ? "'$file_sk'" : "NULL") . ", '$status_proses')";
+    $query = "INSERT INTO tb_riwayat_kgp_kp (nip, jenis_kenaikan, pangkat_gol_sebelumnya, pangkat_gol_sekarang, tmt_kenaikan, no_sk, tanggal_sk, penandatanganan_sk, file_sk, status_proses)
+              VALUES ('$nip', '$jenis_kenaikan', '$pangkat_gol_sebelumnya', '$pangkat_gol_sekarang', '$tmt_kenaikan', '$no_sk', '$tanggal_sk', '$penandatangan_sk', '$file_sk', '$status_proses')";
 
     if (mysqli_query($db, $query)) {
         echo "<script>alert('Data berhasil disimpan'); window.location='../datakgb-kp.php';</script>";

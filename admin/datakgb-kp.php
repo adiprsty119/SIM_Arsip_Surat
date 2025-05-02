@@ -89,17 +89,17 @@ include "login/ceksession.php";
                                                 <label for="jenis_kenaikan">Jenis Kenaikan</label>
                                                 <select name="jenis_kenaikan" class="form-control" required>
                                                     <option value="">-- Pilih Jenis Kenaikan --</option>
-                                                    <option value="">Kenaikan Gaji Berkala (KGB)</option>
-                                                    <option value="">Kenaikan Pangkat (KP)</option>
+                                                    <option value="KGB">Kenaikan Gaji Berkala (KGB)</option>
+                                                    <option value="KP">Kenaikan Pangkat (KP)</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="pangkat_sebelumnya">Pangkat Sebelumnya</label>
-                                                <input type="text" name="pengkat_sebelumnya" class="form-control" required>
+                                                <input type="text" name="pangkat_gol_sebelumnya" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="pangkat_sekarang">Pengkat Sekarang</label>
-                                                <input type="text" name="pangkat_sekarang" class="form-control" required>
+                                                <input type="text" name="pangkat_gol_sekarang" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="tmt_kenaikan">TMT Kenaikan</label>
@@ -118,12 +118,16 @@ include "login/ceksession.php";
                                                 <input type="text" name="penandatanganan_sk" class="form-control" required>
                                             </div>
                                             <div class="form-group">
+                                                <label for="file_sk">Upload File SK</label>
+                                                <input type="file" name="file_sk" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="status_proses">Status Proses</label>
                                                 <select name="status_proses" class="form-control" required>
                                                     <option value="">-- Pilih Jenis Status --</option>
-                                                    <option value="">Sudah</option>
-                                                    <option value="">Belum</option>
-                                                    <option value="">Ditolak</option>
+                                                    <option value="sudah">Sudah</option>
+                                                    <option value="belum">Belum</option>
+                                                    <option value="ditolak">Ditolak</option>
                                                 </select>
                                             </div>
                                             <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Simpan</button>
@@ -152,6 +156,7 @@ include "login/ceksession.php";
                                                 <th>No. SK</th>
                                                 <th>Tanggal SK</th>
                                                 <th>Penandatangan SK</th>
+                                                <th>Lihat File SK</th>
                                                 <th>Status Proses</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -172,6 +177,7 @@ include "login/ceksession.php";
                                                 <td>{$data['no_sk']}</td>
                                                 <td>{$data['tanggal_sk']}</td>
                                                 <td>{$data['penandatanganan_sk']}</td>
+                                                <td>{$data['file_sk']}</td>
                                                 <td>{$data['status_proses']}</td>
                                                 <td>
                                                 <a href='editdatakgb-kp.php?id={$data['id_riwayat']}' class='btn btn-warning btn-xs'><i class='fa fa-edit'></i> Edit</a>
