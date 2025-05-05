@@ -3,13 +3,13 @@ session_start();
 include "../koneksi/koneksi.php";
 include "login/ceksession.php";
 
-if (!isset($_GET['id_berkas']) || empty($_GET['id_berkas'])) {
-    echo "<script>alert('ID tidak valid'); window.location='databerkasdigital.php';</script>";
+if (!isset($_GET['id_info']) || empty($_GET['id_info'])) {
+    echo "<script>alert('ID tidak valid'); window.location='informasikepegawaian.php';</script>";
     exit;
 }
 
-$id = intval($_GET['id_berkas']);
-$data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_berkasdigital WHERE id_berkas='$id'"));
+$id = intval($_GET['id_info']);
+$data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_informasikepegawaian WHERE id_info='$id'"));
 
 ?>
 
@@ -18,7 +18,7 @@ $data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_berkasdigital WHE
 
 <head>
     <meta charset="UTF-8">
-    <title>Edit Berkas Digital</title>
+    <title>Edit Data Informasi Kepegawaian</title>
     <link href="../assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -110,9 +110,9 @@ $data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_berkasdigital WHE
 
 <body>
     <div class="container mt-4">
-        <h3>Edit Data Berkas Digital</h3>
-        <form action="proses/update_berkasdigital.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id_berkas" value="<?= $data['id_berkas'] ?>">
+        <h3>Edit Data Informasi Kepegawaian</h3>
+        <form action="proses/updatedata_infokepegawaian.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id_info" value="<?= $data['id_info'] ?>">
 
             <div class="form-group">
                 <label>NIP</label>
@@ -120,28 +120,53 @@ $data = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM tb_berkasdigital WHE
             </div>
 
             <div class="form-group">
-                <label>Nama Dokumen</label>
-                <input type="text" name="nama_dokumen" value="<?= htmlspecialchars($data['nama_dokumen']) ?>" class="form-control" required>
+                <label>Riwayat Pendidikan</label>
+                <input type="text" name="riwayat_pendidikan" value="<?= htmlspecialchars($data['riwayat_pendidikan']) ?>" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label>Kategori Dokumen</label>
-                <input type="text" name="kategori_dokumen" value="<?= htmlspecialchars($data['kategori_dokumen']) ?>" class="form-control" required>
+                <label>Riwayat Diklat</label>
+                <input type="text" name="riwayat_diklat" value="<?= htmlspecialchars($data['riwayat_diklat']) ?>" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label>Tanggal Upload</label>
-                <input type="date" name="tanggal_upload" value="<?= htmlspecialchars($data['tanggal_upload']) ?>" class="form-control" required>
+                <label>Riwayat_Jabatan</label>
+                <input type="text" name="riwayat_jabatan" value="<?= htmlspecialchars($data['riwayat_jabatan']) ?>" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label>File Dokumen (Kosongkan jika tidak ingin diganti)</label>
-                <input type="file" name="file_path" class="form-control">
+                <label>Riwayat Mutasi</label>
+                <input type="text" name="riwayat_mutasi" value="<?= htmlspecialchars($data['riwayat_mutasi']) ?>" class="form-control">
             </div>
 
             <div class="form-group">
-                <label>Keterangan</label>
-                <textarea name="keterangan" class="form-control"><?= htmlspecialchars($data['keterangan']) ?></textarea>
+                <label>Riwayat_Penghargaan</label>
+                <input type="text" name="riwayat_penghargaan" class="form-control" value="<?= htmlspecialchars($data['riwayat_penghargaan']) ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Tugas Belajar</label>
+                <input type="number" name="tugas_belajar" class="form-control" value="<?= htmlspecialchars($data['tugas_belajar']) ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Izin Belajar</label>
+                <input type="number" name="izin_belajar" class="form-control" value="<?= htmlspecialchars($data['izin_belajar']) ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Masa Kerja Tahun</label>
+                <input type="number" name="masa_kerja_tahun" class="form-control" value="<?= htmlspecialchars($data['masa_kerja_tahun']) ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Masa Kerja Bulan</label>
+                <input type="number" name="masa_kerja_bulan" class="form-control" value="<?= htmlspecialchars($data['masa_kerja_bulan']) ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Catatan Lain</label>
+                <input type="text" name="catatan_lain" class="form-control" value="<?= htmlspecialchars($data['catatan_lain']) ?>">
             </div>
 
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

@@ -135,31 +135,31 @@ include '../koneksi/koneksi.php';
             while ($data = mysqli_fetch_array($query)) {
                 echo "<tr>
                     <td>{$no}</td>
-                    <td>{$data['nip']}</td>
-                    <td>{$data['nama_lengkap']}</td>
-                    <td>{$data['tempat_lahir']}</td>
-                    <td>{$data['tanggal_lahir']}</td>
-                    <td>{$data['usia']}</td>
-                    <td>{$data['jenis_kelamin']}</td>
-                    <td>{$data['agama']}</td>
-                    <td>{$data['pangkat_golongan']}</td>
-                    <td>{$data['pangkat_tmt']}</td>
-                    <td>{$data['nama_jabatan_eselon']}</td>
-                    <td>{$data['jabatan_eselon_tmt']}</td>
-                    <td>{$data['bulan_masakerja']}</td>
-                    <td>{$data['tahun_masakerja']}</td>
-                    <td>{$data['nama_diklat']}</td>
-                    <td>{$data['bulan_diklat']}</td>
-                    <td>{$data['tahun_diklat']}</td>
-                    <td>{$data['jumlah_jam_diklat']}</td>
-                    <td>{$data['asal']}</td>
-                    <td>{$data['tingkat_pendidikan_terakhir']}</td>
-                    <td>{$data['jurusan']}</td>
-                    <td>{$data['instansi_sekolah']}</td>
-                    <td>{$data['tahun_lulus_pendidikan']}</td>
-                    <td>{$data['no_ijazah']}</td>
-                    <td>{$data['karpeg']}</td>
-                    <td>{$data['kgb']}</td>
+                    <td>" . htmlspecialchars($data['nip']) . "</td>
+                    <td>" . htmlspecialchars($data['nama_lengkap']) . "</td>
+                    <td>" . htmlspecialchars($data['tempat_lahir']) . "</td>
+                    <td>" . htmlspecialchars($data['tanggal_lahir']) . "</td>
+                    <td>" . htmlspecialchars($data['usia']) . "</td>
+                    <td>" . htmlspecialchars($data['jenis_kelamin']) . "</td>
+                    <td>" . htmlspecialchars($data['agama']) . "</td>
+                    <td>" . htmlspecialchars($data['pangkat_golongan']) . "</td>
+                    <td>" . htmlspecialchars($data['pangkat_tmt']) . "</td>
+                    <td>" . htmlspecialchars($data['nama_jabatan_eselon']) . "</td>
+                    <td>" . htmlspecialchars($data['jabatan_eselon_tmt']) . "</td>
+                    <td>" . htmlspecialchars($data['bulan_masakerja']) . "</td>
+                    <td>" . htmlspecialchars($data['tahun_masakerja']) . "</td>
+                    <td>" . htmlspecialchars($data['nama_diklat']) . "</td>
+                    <td>" . htmlspecialchars($data['bulan_diklat']) . "</td>
+                    <td>" . htmlspecialchars($data['tahun_diklat']) . "</td>
+                    <td>" . htmlspecialchars($data['jumlah_jam_diklat']) . "</td>
+                    <td>" . htmlspecialchars($data['asal']) . "</td>
+                    <td>" . htmlspecialchars($data['tingkat_pendidikan_terakhir']) . "</td>
+                    <td>" . htmlspecialchars($data['jurusan']) . "</td>
+                    <td>" . htmlspecialchars($data['instansi_sekolah']) . "</td>
+                    <td>" . htmlspecialchars($data['tahun_lulus_pendidikan']) . "</td>
+                    <td>" . htmlspecialchars($data['no_ijazah']) . "</td>
+                    <td>" . htmlspecialchars($data['karpeg']) . "</td>
+                    <td>" . htmlspecialchars($data['kgb']) . "</td>
                 </tr>";
                 $no++;
             }

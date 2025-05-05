@@ -57,11 +57,16 @@ $data = mysqli_fetch_array($query);
               <li><a href="laporanperiodik.php"><i class="fa fa-book"></i> Laporan Periodik Kasubbag</a></li>
             </ul>
           </li>
-          <!-- Perjalanan Dinas -->
           <li><a><i class="fa fa-plane"></i> Perjalanan Dinas <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="spt_sppd.php"><i class="fa fa-file-pdf-o"></i> SPT dan SPPD</a></li>
               <li><a href="laporan_perjalanan.php"><i class="fa fa-archive"></i> Laporan Materi / Hasil</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-newspaper"></i> Manajemen Berita <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="tambahberita.php"><i class="fa fa-plus"></i> Tambah Berita</a></li>
+              <li><a href="daftarberita.php"><i class="fa fa-envelopes-bulk"></i> Daftar Berita</a></li>
             </ul>
           </li>
         </ul>

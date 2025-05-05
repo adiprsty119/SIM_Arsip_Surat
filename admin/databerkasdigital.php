@@ -31,6 +31,138 @@ include "login/ceksession.php";
     <link rel="shortcut icon" href="../img/icon.ico">
     <!-- Custom Theme Style -->
     <link href="../assets/build/css/custom.min.css" rel="stylesheet">
+
+    <style>
+        #modalKonfirmasi {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .modal-content p {
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 2.5rem;
+        }
+
+        .modal-content i {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-content i:hover {
+            color: #e53935;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-confirm {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background-color: #c62828;
+        }
+
+        .btn-cancel {
+            background-color: #9e9e9e;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: #757575;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #modalSukses {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-sukses-content {
+            background: #4caf50;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: popIn 0.4s ease-in-out;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -66,7 +198,7 @@ include "login/ceksession.php";
 
                         <div class="x_content">
                             <!-- Tombol Tambah Form -->
-                            <button class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
+                            <button id="toggleFormBtn" class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
 
                             <!-- Form Tambah -->
                             <div id="formSPT" class="collapse" style="margin-top: 20px;">
@@ -140,15 +272,15 @@ include "login/ceksession.php";
                                         while ($data = mysqli_fetch_array($query)) {
                                             echo "<tr>";
                                             echo "<td>" . $no++ . "</td>";
-                                            echo "<td>" . $data['nip'] . "</td>";
-                                            echo "<td>" . $data['nama_dokumen'] . "</td>";
-                                            echo "<td>" . $data['kategori_dokumen'] . "</td>";
+                                            echo "<td>" . htmlspecialchars($data['nip']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($data['nama_dokumen']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($data['kategori_dokumen']) . "</td>";
                                             echo "<td>" . date("d-m-Y", strtotime($data['tanggal_upload'])) . "</td>";
-                                            echo "<td><a href='../berkas/" . $data['file_path'] . "' target='_blank'>Lihat File</a></td>";
-                                            echo "<td>" . $data['keterangan'] . "</td>";
+                                            echo "<td><a href='../berkas/" . htmlspecialchars($data['file_path']) . "' target='_blank'>Lihat File</a></td>";
+                                            echo "<td>" . htmlspecialchars($data['keterangan']) . "</td>";
                                             echo "<td>
                                                     <a href='editberkasdigital.php?id_berkas=" . $data['id_berkas'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
-                                                    <a href='proses/hapusberkas.php?id_berkas=" . $data['id_berkas'] . "' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></a>
+                                                    <button type='button' class='btn btn-sm btn-danger' onclick='tampilkanModal({$data['id_berkas']})'>Hapus</button>
                                                 </td>";
                                             echo "</tr>";
                                         }
@@ -161,6 +293,27 @@ include "login/ceksession.php";
                 </div>
             </div>
             <!-- /page content -->
+
+            <!-- Modal Box -->
+            <div id="modalKonfirmasi">
+                <div class="modal-content">
+                    <i class="fa-solid fa-xmark" onclick="handleKonfirmasi(false)"></i>
+                    <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                    <div class="modal-buttons">
+                        <button class="btn btn-confirm" onclick="handleKonfirmasi(true)">Ya</button>
+                        <button class="btn btn-cancel" onclick="handleKonfirmasi(false)">Batal</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Box -->
+
+            <!-- Modal Sukses -->
+            <div id="modalSukses">
+                <div class="modal-sukses-content">
+                    <p>Data telah dihapus</p>
+                </div>
+            </div>
+            <!-- Modal Sukses -->
 
             <!-- footer content -->
             <footer>
@@ -207,13 +360,71 @@ include "login/ceksession.php";
             $('#example').DataTable();
         });
     </script>
-    <script type="text/javascript" language="JavaScript">
+    <script>
+        $(document).ready(function() {
+            $('#formSPT').on('show.bs.collapse', function() {
+                $('#toggleFormBtn')
+                    .removeClass('btn-success')
+                    .addClass('btn-danger')
+                    .text('× Batalkan');
+            });
+
+            $('#formSPT').on('hide.bs.collapse', function() {
+                $('#toggleFormBtn')
+                    .removeClass('btn-danger')
+                    .addClass('btn-success')
+                    .text('+ Tambah Data');
+            });
+        });
+    </script>
+    <script>
+        window.onload = function() {
+            document.getElementById('modalKonfirmasi').style.display = 'none';
+            document.getElementById('modalSukses').style.display = 'none';
+        };
+
+        let idTerpilih = null;
+
+        function tampilkanModal(id) {
+            idTerpilih = id;
+            document.getElementById('modalKonfirmasi').style.display = 'flex';
+        }
+
+        function handleKonfirmasi(setuju) {
+            document.getElementById('modalKonfirmasi').style.display = 'none';
+
+            if (setuju && idTerpilih !== null) {
+                fetch(`proses/hapusberkas.php?id_berkas=${idTerpilih}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Tampilkan modal sukses
+                            document.getElementById('modalSukses').style.display = 'flex';
+
+                            // Setelah 2 detik, sembunyikan dan muat ulang halaman
+                            setTimeout(() => {
+                                document.getElementById('modalSukses').style.display = 'none';
+                                window.location.href = 'databerkasdigital.php';
+                            }, 3000);
+                        } else {
+                            alert("Gagal menghapus data.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Terjadi kesalahan:", error);
+                        alert("Terjadi kesalahan saat menghapus data.");
+                    });
+            }
+        }
+    </script>
+    <!-- <script type="text/javascript" language="JavaScript">
         function konfirmasi() {
             tanya = confirm("Anda Yakin Akan Menghapus Data ?");
             if (tanya == true) return true;
             else return false;
         }
-    </script>
+    </script> -->
 
 </body>
 

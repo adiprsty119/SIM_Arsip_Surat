@@ -7,7 +7,7 @@ include '../koneksi/koneksi.php';
 
 <head>
     <meta charset="UTF-8">
-    <title>Cetak Data Nominatif ASN</title>
+    <title>Cetak Data KGB-KP</title>
     <style>
         @media print {
             @page {
@@ -18,7 +18,7 @@ include '../koneksi/koneksi.php';
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 12px;
+            font-size: 6px;
             color: #000;
             padding: 10px;
         }
@@ -95,34 +95,41 @@ include '../koneksi/koneksi.php';
     </div>
     <hr>
 
-    <h3 style="text-align:center; margin-bottom: 20px; font-size: 1rem;">DATA BERKAS DIGITAL</h3>
+    <h3 style="text-align:center; margin-bottom: 20px; font-size: 1rem;">DATA KENAIKAN GAJI BERKALA (KGB) - KENAIKAN PANGKAT (KP)</h3>
 
     <table>
         <thead>
             <tr>
                 <th>No</th>
                 <th>NIP</th>
-                <th>Nama Dokumen</th>
-                <th>Kategori Dokumen</th>
-                <th>Tanggal Upload</th>
-                <th>File</th>
-                <th>Keterangan</th>
+                <th>Jenis Kenaikan</th>
+                <th>Pangkat Sebelumnya</th>
+                <th>Pangkat Sekarang</th>
+                <th>TMT Kenaikan</th>
+                <th>No. SK</th>
+                <th>Tanggal SK</th>
+                <th>Penandatangan SK</th>
+                <th>File SK</th>
+                <th>Status Proses</th>
             </tr>
         </thead>
         <tbody>
             <?php
             $no = 1;
-            $query = mysqli_query($db, "SELECT * FROM tb_berkasdigital");
+            $query = mysqli_query($db, "SELECT * FROM tb_riwayat_kgp_kp");
             while ($data = mysqli_fetch_array($query)) {
                 echo "<tr>
-                    <td>{$no}</td>
-                    <td>" . htmlspecialchars($data['nip']) . "</td>
-                    <td>" . htmlspecialchars($data['nama_dokumen']) . "</td>
-                    <td>" . htmlspecialchars($data['kategori_dokumen']) . "</td>
-                    <td>" . htmlspecialchars($data['tanggal_upload']) . "</td>
-                    <td>" . htmlspecialchars($data['file_path']) . "</td>
-                    <td>" . htmlspecialchars($data['keterangan']) . "</td>
-                </tr>";
+                        <td>{$no}</td>
+                        <td>" . htmlspecialchars($data['nip']) . "</td>
+                        <td>" . htmlspecialchars($data['jenis_kenaikan']) . "</td>
+                        <td>" . htmlspecialchars($data['pangkat_gol_sebelumnya']) . "</td>
+                        <td>" . htmlspecialchars($data['pangkat_gol_sekarang']) . "</td>
+                        <td>" . htmlspecialchars($data['tmt_kenaikan']) . "</td>
+                        <td>" . htmlspecialchars($data['no_sk']) . "</td>
+                        <td>" . htmlspecialchars($data['tanggal_sk']) . "</td>
+                        <td>" . htmlspecialchars($data['penandatanganan_sk']) . "</td>
+                        <td>" . htmlspecialchars($data['status_proses']) . "</td>
+                    </tr>";
                 $no++;
             }
             ?>

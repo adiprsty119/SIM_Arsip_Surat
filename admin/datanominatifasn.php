@@ -67,7 +67,7 @@ include "login/ceksession.php";
 
                         <div class="x_content">
                             <!-- Tombol Tambah Form -->
-                            <button class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
+                            <button id="toggleFormBtn" class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
 
                             <!-- Form Tambah -->
                             <div id="formSPT" class="collapse" style="margin-top: 20px;">
@@ -263,32 +263,32 @@ include "login/ceksession.php";
                                         $no = 1;
                                         while ($row = mysqli_fetch_array($query)) {
                                             echo "<tr>
-                                            <td>$no</td>
-                                            <td>{$row['nip']}</td>
-                                            <td>{$row['nama_lengkap']}</td>
-                                            <td>{$row['tempat_lahir']}, {$row['tanggal_lahir']}</td>
-                                            <td>{$row['pangkat_golongan']}</td>
-                                            <td>{$row['pangkat_tmt']}</td>
-                                            <td>{$row['nama_jabatan_eselon']}</td>
-                                            <td>{$row['jabatan_eselon_tmt']}</td>
-                                            <td>{$row['bulan_masakerja']}</td>
-                                            <td>{$row['tahun_masakerja']}</td>
-                                            <td>{$row['nama_diklat']}</td>
-                                            <td>{$row['bulan_diklat']}-{$row['tahun_diklat']}</td>
-                                            <td>{$row['jumlah_jam_diklat']}</td>
-                                            <td>{$row['usia']}</td>
-                                            <td>{$row['jenis_kelamin']}</td>
-                                            <td>{$row['agama']}</td>
-                                            <td>{$row['asal']}</td>
-                                            <td>{$row['tahun_masakerja']}</td>
-                                            <td>{$row['tingkat_pendidikan_terakhir']}</td>
-                                            <td>{$row['no_ijazah']}</td>
-                                            <td>{$row['jurusan']}</td>
-                                            <td>{$row['instansi_sekolah']}</td>
-                                            <td>{$row['tahun_lulus_pendidikan']}</td>
-                                            <td>{$row['karpeg']}</td>
-                                            <td>{$row['kgb']}</td>
-                                        </tr>";
+                                                    <td>$no</td>
+                                                    <td>" . htmlspecialchars($row['nip']) . "</td>
+                                                    <td>" . htmlspecialchars($row['nama_lengkap']) . "</td>
+                                                    <td>" . htmlspecialchars($row['tempat_lahir']), htmlspecialchars($row['tanggal_lahir']) . "</td>
+                                                    <td>" . htmlspecialchars($row['pangkat_golongan']) . "</td>
+                                                    <td>" . htmlspecialchars($row['pangkat_tmt']) . "</td>
+                                                    <td>" . htmlspecialchars($row['nama_jabatan_eselon']) . "</td>
+                                                    <td>" . htmlspecialchars($row['jabatan_eselon_tmt']) . "</td>
+                                                    <td>" . htmlspecialchars($row['bulan_masakerja']) . "</td>
+                                                    <td>" . htmlspecialchars($row['tahun_masakerja']) . "</td>
+                                                    <td>" . htmlspecialchars($row['nama_diklat']) . "</td>
+                                                    <td>" . htmlspecialchars($row['bulan_diklat']) . " - " . htmlspecialchars($row['tahun_diklat']) . "</td>
+                                                    <td>" . htmlspecialchars($row['jumlah_jam_diklat']) . "</td>
+                                                    <td>" . htmlspecialchars($row['usia']) . "</td>
+                                                    <td>" . htmlspecialchars($row['jenis_kelamin']) . "</td>
+                                                    <td>" . htmlspecialchars($row['agama']) . "</td>
+                                                    <td>" . htmlspecialchars($row['asal']) . "</td>
+                                                    <td>" . htmlspecialchars($row['tahun_masakerja']) . "</td>
+                                                    <td>" . htmlspecialchars($row['tingkat_pendidikan_terakhir']) . "</td>
+                                                    <td>" . htmlspecialchars($row['no_ijazah']) . "</td>
+                                                    <td>" . htmlspecialchars($row['jurusan']) . "</td>
+                                                    <td>" . htmlspecialchars($row['instansi_sekolah']) . "</td>
+                                                    <td>" . htmlspecialchars($row['tahun_lulus_pendidikan']) . "</td>
+                                                    <td>" . htmlspecialchars($row['karpeg']) . "</td>
+                                                    <td>" . htmlspecialchars($row['kgb']) . "</td>
+                                                </tr>";
                                             $no++;
                                         }
                                         ?>
@@ -344,6 +344,23 @@ include "login/ceksession.php";
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#formSPT').on('show.bs.collapse', function() {
+                $('#toggleFormBtn')
+                    .removeClass('btn-success')
+                    .addClass('btn-danger')
+                    .text('× Batalkan');
+            });
+
+            $('#formSPT').on('hide.bs.collapse', function() {
+                $('#toggleFormBtn')
+                    .removeClass('btn-danger')
+                    .addClass('btn-success')
+                    .text('+ Tambah Data');
+            });
         });
     </script>
     <script type="text/javascript" language="JavaScript">

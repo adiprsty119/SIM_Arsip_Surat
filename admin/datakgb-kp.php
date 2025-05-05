@@ -31,6 +31,138 @@ include "login/ceksession.php";
     <link rel="shortcut icon" href="../img/icon.ico">
     <!-- Custom Theme Style -->
     <link href="../assets/build/css/custom.min.css" rel="stylesheet">
+
+    <style>
+        #modalKonfirmasi {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .modal-content p {
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 2.5rem;
+        }
+
+        .modal-content i {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-content i:hover {
+            color: #e53935;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-confirm {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background-color: #c62828;
+        }
+
+        .btn-cancel {
+            background-color: #9e9e9e;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: #757575;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #modalSukses {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-sukses-content {
+            background: #4caf50;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: popIn 0.4s ease-in-out;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -66,7 +198,7 @@ include "login/ceksession.php";
 
                             <div class="x_content">
                                 <!-- Tombol Tambah Form -->
-                                <button class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
+                                <button id="toggleFormBtn" class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
 
                                 <!-- Form Tambah -->
                                 <div id="formSPT" class="collapse" style="margin-top: 20px;">
@@ -94,16 +226,16 @@ include "login/ceksession.php";
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="pangkat_sebelumnya">Pangkat Sebelumnya</label>
+                                                <label for="pangkat_gol_sebelumnya">Pangkat Sebelumnya</label>
                                                 <input type="text" name="pangkat_gol_sebelumnya" class="form-control" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="pangkat_sekarang">Pengkat Sekarang</label>
+                                                <label for="pangkat_gol_sekarang">Pangkat Sekarang</label>
                                                 <input type="text" name="pangkat_gol_sekarang" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="tmt_kenaikan">TMT Kenaikan</label>
-                                                <input type="text" name="tmt_kenaikan" class="form-control" required>
+                                                <input type="date" name="tmt_kenaikan" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="no_sk">Nomor SK</label>
@@ -156,7 +288,7 @@ include "login/ceksession.php";
                                                 <th>No. SK</th>
                                                 <th>Tanggal SK</th>
                                                 <th>Penandatangan SK</th>
-                                                <th>Lihat File SK</th>
+                                                <th>File SK</th>
                                                 <th>Status Proses</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -168,22 +300,22 @@ include "login/ceksession.php";
                                             $sql = mysqli_query($db, "SELECT * FROM tb_riwayat_kgp_kp ORDER BY tmt_kenaikan DESC");
                                             while ($data = mysqli_fetch_array($sql)) {
                                                 echo "<tr>
-                                                <td>$no</td>
-                                                <td>{$data['nip']}</td>
-                                                <td>{$data['jenis_kenaikan']}</td>
-                                                <td>{$data['pangkat_gol_sebelumnya']}</td>
-                                                <td>{$data['pangkat_gol_sekarang']}</td>
-                                                <td>{$data['tmt_kenaikan']}</td>
-                                                <td>{$data['no_sk']}</td>
-                                                <td>{$data['tanggal_sk']}</td>
-                                                <td>{$data['penandatanganan_sk']}</td>
-                                                <td>{$data['file_sk']}</td>
-                                                <td>{$data['status_proses']}</td>
-                                                <td>
-                                                <a href='editdatakgb-kp.php?id={$data['id_riwayat']}' class='btn btn-warning btn-xs'><i class='fa fa-edit'></i> Edit</a>
-                                                <a href='hapusdatakgb-kp.php?id={$data['id_riwayat']}' onclick='return konfirmasi()' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i> Hapus</a>
-                                                </td>
-                                            </tr>";
+                                                        <td>$no</td>
+                                                        <td>" . htmlspecialchars($data['nip']) . "</td>
+                                                        <td>" . htmlspecialchars($data['jenis_kenaikan']) . "</td>
+                                                        <td>" . htmlspecialchars($data['pangkat_gol_sebelumnya']) . "</td>
+                                                        <td>" . htmlspecialchars($data['pangkat_gol_sekarang']) . "</td>
+                                                        <td>" . htmlspecialchars($data['tmt_kenaikan']) . "</td>
+                                                        <td>" . htmlspecialchars($data['no_sk']) . "</td>
+                                                        <td>" . htmlspecialchars($data['tanggal_sk']) . "</td>
+                                                        <td>" . htmlspecialchars($data['penandatanganan_sk']) . "</td>
+                                                        <td><a href='../berkas/" . htmlspecialchars($data['file_sk']) . "' target='_blank'>Lihat File</a></td>
+                                                        <td>" . htmlspecialchars($data['status_proses']) . "</td>
+                                                        <td>
+                                                            <a href='editdata_kgb-kp.php?id_riwayat=" . $data['id_riwayat'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
+                                                            <button type='button' class='btn btn-sm btn-danger' onclick='tampilkanModal({$data['id_riwayat']})'>Hapus</button>
+                                                        </td>
+                                                    </tr>";
                                                 $no++;
                                             }
                                             ?>
@@ -195,8 +327,28 @@ include "login/ceksession.php";
                     </div>
                 </div>
             </div>
-
             <!-- /page content -->
+
+            <!-- Modal Box -->
+            <div id="modalKonfirmasi">
+                <div class="modal-content">
+                    <i class="fa-solid fa-xmark" onclick="handleKonfirmasi(false)"></i>
+                    <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                    <div class="modal-buttons">
+                        <button class="btn btn-confirm" onclick="handleKonfirmasi(true)">Ya</button>
+                        <button class="btn btn-cancel" onclick="handleKonfirmasi(false)">Batal</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Box -->
+
+            <!-- Modal Sukses -->
+            <div id="modalSukses">
+                <div class="modal-sukses-content">
+                    <p>Data telah dihapus</p>
+                </div>
+            </div>
+            <!-- Modal Sukses -->
 
             <!-- footer content -->
             <footer>
@@ -243,11 +395,62 @@ include "login/ceksession.php";
             $('#example').DataTable();
         });
     </script>
-    <script type="text/javascript" language="JavaScript">
-        function konfirmasi() {
-            tanya = confirm("Anda Yakin Akan Menghapus Data ?");
-            if (tanya == true) return true;
-            else return false;
+    <script>
+        $(document).ready(function() {
+            $('#formSPT').on('show.bs.collapse', function() {
+                $('#toggleFormBtn')
+                    .removeClass('btn-success')
+                    .addClass('btn-danger')
+                    .text('× Batalkan');
+            });
+
+            $('#formSPT').on('hide.bs.collapse', function() {
+                $('#toggleFormBtn')
+                    .removeClass('btn-danger')
+                    .addClass('btn-success')
+                    .text('+ Tambah Data');
+            });
+        });
+    </script>
+    <script>
+        window.onload = function() {
+            document.getElementById('modalKonfirmasi').style.display = 'none';
+            document.getElementById('modalSukses').style.display = 'none';
+        };
+
+        let idTerpilih = null;
+
+        function tampilkanModal(id) {
+            idTerpilih = id;
+            document.getElementById('modalKonfirmasi').style.display = 'flex';
+        }
+
+        function handleKonfirmasi(setuju) {
+            document.getElementById('modalKonfirmasi').style.display = 'none';
+
+            if (setuju && idTerpilih !== null) {
+                fetch(`proses/hapusdata_kgb-kp.php?id_riwayat=${idTerpilih}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Tampilkan modal sukses
+                            document.getElementById('modalSukses').style.display = 'flex';
+
+                            // Setelah 2 detik, sembunyikan dan muat ulang halaman
+                            setTimeout(() => {
+                                document.getElementById('modalSukses').style.display = 'none';
+                                window.location.href = 'datakgb-kp.php';
+                            }, 3000);
+                        } else {
+                            alert("Gagal menghapus data.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Terjadi kesalahan:", error);
+                        alert("Terjadi kesalahan saat menghapus data.");
+                    });
+            }
         }
     </script>
 
