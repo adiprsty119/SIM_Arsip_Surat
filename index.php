@@ -166,17 +166,17 @@ include "koneksi/ceksession.php";
         <div class="row">
           <div class="col-md-12 text-center">
             <h2 class="service-title pad-bt15">Pengembang</h2>
-            <p class="sub-title pad-bt15">"The difference between success and failure is a great team"</p>
+            <p class="sub-title pad-bt15">"TOMA CAHAYA NUSANTARA - Solusinya Milenials"</p>
             <hr class="bottom-line">
           </div>
           <div class="col-md-3"></div>
           <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item padding-right-zero mr-btn-15">
             <figure>
-              <img src="img/adi_prasetyo.png" class="img-responsive">
+              <img src="img/tomaofficial.png" class="img-responsive">
               <figcaption>
-                <h2>Adi Prasetyo</h2>
-                <p>"TEKNIK INFORMATIKA UNIVERSITAS MUSAMUS"</p>
-                <p>"Never put off till tomorrow what you can do today"</p>
+                <h2>TOMA CAHAYA NUSANTARA</h2>
+                <p>"Solusinya Milenials"</p>
+                <p>"Bergerak pada bidang jasa pembuatan aplikasi dan desain grafis"</p>
               </figcaption>
             </figure>
           </div>
