@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 include '../koneksi/koneksi.php';
 
 // Cek apakah pengguna sudah login
@@ -92,6 +93,7 @@ if (!isset($_SESSION['id'])) {
         <h2 class="mb-4"><i class="fa fa-plus"></i> Tambah Berita Baru</h2>
 
         <form action="proses/proses_tambahberita.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
             <div class="form-group">
                 <label for="judul">Judul Berita</label>
                 <input type="text" class="form-control" id="judul" name="judul" required>

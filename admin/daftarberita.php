@@ -1,6 +1,7 @@
 <?php
 include '../koneksi/koneksi.php';
 session_start();
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
 <!DOCTYPE html>
@@ -205,6 +206,7 @@ session_start();
                                 <!-- Form Tambah -->
                                 <div id="formSPT" class="collapse" style="margin-top: 20px;">
                                     <form action="proses/proses_tambahberita.php" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="judul">Judul Berita</label>
