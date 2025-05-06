@@ -1,9 +1,10 @@
-<!DOCTYPE html>
 <?php
+include '../koneksi/koneksi.php';
 session_start();
-include "login/ceksession.php";
 ?>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +13,7 @@ include "login/ceksession.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Data KGB & KP</title>
+    <title>Daftar Berita</title>
 
     <!-- Bootstrap -->
     <link href="../assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -166,6 +167,7 @@ include "login/ceksession.php";
 </head>
 
 <body class="nav-md">
+
     <div class="container body">
         <div class="main_container">
             <!-- Profile and Sidebarmenu -->
@@ -184,7 +186,7 @@ include "login/ceksession.php";
             <div class="right_col" role="main">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Data KGB & KP ASN</h3>
+                        <h3>Berita</h3>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -192,75 +194,41 @@ include "login/ceksession.php";
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Riwayat Kenaikan ASN</h2>
+                                <h2>Daftar Berita</h2>
                                 <div class="clearfix"></div>
                             </div>
 
                             <div class="x_content">
                                 <!-- Tombol Tambah Form -->
-                                <button id="toggleFormBtn" class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Data</button>
+                                <button id="toggleFormBtn" class="btn btn-success" data-toggle="collapse" data-target="#formSPT">+ Tambah Berita Baru</button>
 
                                 <!-- Form Tambah -->
                                 <div id="formSPT" class="collapse" style="margin-top: 20px;">
-                                    <form action="proses/simpandata_kgb-kp.php" method="post" enctype="multipart/form-data">
+                                    <form action="proses/proses_tambahberita.php" method="post" enctype="multipart/form-data">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="nip">NIP</label>
-                                                <select name="nip" class="form-control" required>
-                                                    <option value="">-- Pilih NIP Pegawai --</option>
-                                                    <?php
-                                                    $queryNIPPegawai = mysqli_query($db, "SELECT nip, nama_lengkap FROM nominatif_asn ORDER BY nip ASC");
-                                                    while ($pegawai = mysqli_fetch_array($queryNIPPegawai)) {
-                                                        $label = "{$pegawai['nip']} ({$pegawai['nama_lengkap']})";
-                                                        echo "<option value='{$pegawai['nip']}'>{$label}</option>";
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <label for="judul">Judul Berita</label>
+                                                <input type="text" class="form-control" id="judul" name="judul" required>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="jenis_kenaikan">Jenis Kenaikan</label>
-                                                <select name="jenis_kenaikan" class="form-control" required>
-                                                    <option value="">-- Pilih Jenis Kenaikan --</option>
-                                                    <option value="KGB">Kenaikan Gaji Berkala (KGB)</option>
-                                                    <option value="KP">Kenaikan Pangkat (KP)</option>
-                                                </select>
+                                                <label for="deskripsi">Deskripsi Berita</label>
+                                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" required></textarea>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="pangkat_gol_sebelumnya">Pangkat Sebelumnya</label>
-                                                <input type="text" name="pangkat_gol_sebelumnya" class="form-control" required>
+                                                <label for="gambar">Upload Gambar</label>
+                                                <input type="file" class="form-control" id="gambar" name="gambar" accept="image/*">
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="pangkat_gol_sekarang">Pangkat Sekarang</label>
-                                                <input type="text" name="pangkat_gol_sekarang" class="form-control" required>
+                                                <label for="tanggal_terbit">Tanggal Terbit</label>
+                                                <input type="date" class="form-control" id="tanggal_terbit" name="tanggal_terbit" required>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="tmt_kenaikan">TMT Kenaikan</label>
-                                                <input type="date" name="tmt_kenaikan" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="no_sk">Nomor SK</label>
-                                                <input type="text" name="no_sk" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="tanggal_sk">Tanggal SK</label>
-                                                <input type="date" name="tanggal_sk" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="penandatanganan_sk">Penandatanganan SK</label>
-                                                <input type="text" name="penandatanganan_sk" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="file_sk">Upload File SK</label>
-                                                <input type="file" name="file_sk" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="status_proses">Status Proses</label>
-                                                <select name="status_proses" class="form-control" required>
-                                                    <option value="">-- Pilih Jenis Status --</option>
-                                                    <option value="sudah">Sudah</option>
-                                                    <option value="belum">Belum</option>
-                                                    <option value="ditolak">Ditolak</option>
-                                                </select>
+                                                <label for="penulis">Penulis</label>
+                                                <input type="text" class="form-control" id="penulis" name="penulis" required>
                                             </div>
                                             <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Simpan</button>
                                         </div>
@@ -269,10 +237,9 @@ include "login/ceksession.php";
 
                                 <hr>
 
-                                <form action="downloaddata_kgb-kp.php" name="downloaddata_kgb-kp" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <form action="downloadberita.php" name="downloaddata_kgb-kp" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div>
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Data</button></a>
-                                        <a href="printdata_kgb-kp.php"><button type="button" class="btn btn-success"><i class="fa fa-print"></i> Print Dokumen</button></a>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Semua Berita (PDF)</button></a>
                                     </div>
                                 </form>
                                 <div class="x_content">
@@ -280,16 +247,11 @@ include "login/ceksession.php";
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>NIP</th>
-                                                <th>Jenis Kenaikan</th>
-                                                <th>Pangkat Sebelumnya</th>
-                                                <th>Pangkat Sekarang</th>
-                                                <th>TMT Kenaikan</th>
-                                                <th>No. SK</th>
-                                                <th>Tanggal SK</th>
-                                                <th>Penandatangan SK</th>
-                                                <th>File SK</th>
-                                                <th>Status Proses</th>
+                                                <th>Judul Berita</th>
+                                                <th>Deskripsi Berita</th>
+                                                <th>Gambar Berita</th>
+                                                <th>Tanggal Terbit</th>
+                                                <th>Nama Penulis</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -297,23 +259,25 @@ include "login/ceksession.php";
                                             <?php
                                             include '../koneksi/koneksi.php';
                                             $no = 1;
-                                            $sql = mysqli_query($db, "SELECT * FROM tb_riwayat_kgp_kp ORDER BY tmt_kenaikan DESC");
+                                            $sql = mysqli_query($db, "SELECT * FROM berita ORDER BY id DESC");
                                             while ($data = mysqli_fetch_array($sql)) {
                                                 echo "<tr>
                                                         <td>$no</td>
-                                                        <td>" . htmlspecialchars($data['nip']) . "</td>
-                                                        <td>" . htmlspecialchars($data['jenis_kenaikan']) . "</td>
-                                                        <td>" . htmlspecialchars($data['pangkat_gol_sebelumnya']) . "</td>
-                                                        <td>" . htmlspecialchars($data['pangkat_gol_sekarang']) . "</td>
-                                                        <td>" . htmlspecialchars($data['tmt_kenaikan']) . "</td>
-                                                        <td>" . htmlspecialchars($data['no_sk']) . "</td>
-                                                        <td>" . htmlspecialchars($data['tanggal_sk']) . "</td>
-                                                        <td>" . htmlspecialchars($data['penandatanganan_sk']) . "</td>
-                                                        <td><a href='../berkas/" . htmlspecialchars($data['file_sk']) . "' target='_blank'>Lihat File</a></td>
-                                                        <td>" . htmlspecialchars($data['status_proses']) . "</td>
+                                                        <td>" . htmlspecialchars($data['judul']) . "</td>
+                                                        <td>" . htmlspecialchars($data['deskripsi']) . "</td>
+                                                        <td>";
+                                                if (!empty($data['gambar'])) {
+                                                    echo '<img src="../images/' . htmlspecialchars($data['gambar']) . '" alt="Gambar Berita" width="100">';
+                                                } else {
+                                                    echo '<span>Tidak ada gambar</span>';
+                                                }
+                                                echo "</td>
+                                                        <td>" . htmlspecialchars($data['tanggal']) . "</td>
+                                                        <td>" . htmlspecialchars($data['penulis']) . "</td>
                                                         <td>
-                                                            <a href='editdata_kgb-kp.php?id_riwayat=" . $data['id_riwayat'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
-                                                            <button type='button' class='btn btn-sm btn-danger' onclick='tampilkanModal({$data['id_riwayat']})'>Hapus</button>
+                                                            <a href='downloadberita.php?id=" . $data['id'] . "' class='btn btn-success btn-xs'><i class='fa fa-download'></i></a>
+                                                            <a href='editberita.php?id=" . $data['id'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
+                                                            <button type='button' class='btn btn-sm btn-danger' onclick='tampilkanModal({$data['id']})'>Hapus</button>
                                                         </td>
                                                     </tr>";
                                                 $no++;
@@ -429,7 +393,7 @@ include "login/ceksession.php";
             document.getElementById('modalKonfirmasi').style.display = 'none';
 
             if (setuju && idTerpilih !== null) {
-                fetch(`proses/hapusdata_kgb-kp.php?id_riwayat=${idTerpilih}`, {
+                fetch(`proses/hapusberita.php?id=${idTerpilih}`, {
                         method: 'POST'
                     })
                     .then(response => {
@@ -440,7 +404,7 @@ include "login/ceksession.php";
                             // Setelah 2 detik, sembunyikan dan muat ulang halaman
                             setTimeout(() => {
                                 document.getElementById('modalSukses').style.display = 'none';
-                                window.location.href = 'datakgb-kp.php';
+                                window.location.href = 'daftarberita.php';
                             }, 3000);
                         } else {
                             alert("Gagal menghapus data.");

@@ -89,46 +89,31 @@ include "koneksi/ceksession.php";
     <!--HEADER-->
 
     <!-- Tampilan Berita -->
+    <?php include 'koneksi/koneksi.php'; ?>
+    <!-- Tampilan Berita -->
     <section id="news" class="section-padding wow fadeIn delay-05s text-center">
       <h2 class="service-title pad-bt15">SEKILAS BERITA</h2>
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="slider-item swiper-slide">
-            <div class="slider-image-wrapper">
-              <img class="slider-image" src="img/fotbar_biro.jpg" alt="SliderImg">
+          <?php
+          $query = "SELECT * FROM berita ORDER BY tanggal DESC LIMIT 10";
+          $result = mysqli_query($db, $query);
+
+          while ($row = mysqli_fetch_assoc($result)) {
+            $judul     = $row['judul'];
+            $deskripsi = substr($row['deskripsi'], 0, 120) . '...';
+            $gambar    = 'admin/images/' . $row['gambar'];
+          ?>
+            <div class="slider-item swiper-slide">
+              <div class="slider-image-wrapper">
+                <img class="slider-image" src="<?php echo $gambar; ?>" alt="SliderImg">
+              </div>
+              <div class="slider-item-content">
+                <h1><?php echo htmlspecialchars($judul); ?></h1>
+                <p><?php echo htmlspecialchars($deskripsi); ?></p>
+              </div>
             </div>
-            <div class="slider-item-content">
-              <h1>Exploring Italy's Beauty</h1>
-              <p>Discover the breathtaking landscapes, rich history, and delectable cuisine of Italy in this mesmerizing journey.</p>
-            </div>
-          </div>
-          <div class="slider-item swiper-slide">
-            <div class="slider-image-wrapper">
-              <img class="slider-image" src="https://images.unsplash.com/photo-1491900177661-4e1cd2d7cce2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80" alt="SliderImg">
-            </div>
-            <div class="slider-item-content">
-              <h1>Exploring Hidden Bunkers</h1>
-              <p>Uncover the secrets of underground bunkers and their historical significance in this thrilling adventure.</p>
-            </div>
-          </div>
-          <div class="slider-item swiper-slide">
-            <div class="slider-image-wrapper">
-              <img class="slider-image" src="https://images.unsplash.com/photo-1482192505345-5655af888cc4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2600&q=80" alt="SliderImg">
-            </div>
-            <div class="slider-item-content">
-              <h1>Scaling Small Mountains</h1>
-              <p>Embark on an adventurous journey to conquer the challenging peaks of small mountains and embrace the thrill of the climb.</p>
-            </div>
-          </div>
-          <div class="slider-item swiper-slide">
-            <div class="slider-image-wrapper">
-              <img class="slider-image" src="https://images.unsplash.com/photo-1564604761388-83eafc96f668?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=801.2.1&auto=format&fit=crop&w=2167&q=80" alt="SliderImg">
-            </div>
-            <div class="slider-item-content">
-              <h1>Walking On a Dream</h1>
-              <p>Experience the dreamlike landscapes and surreal beauty of distant lands in this enchanting expedition.</p>
-            </div>
-          </div>
+          <?php } ?>
         </div>
         <div class="slider-buttons">
           <button class="swiper-button-prev">Prev</button>
