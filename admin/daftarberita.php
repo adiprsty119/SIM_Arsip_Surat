@@ -1,6 +1,12 @@
 <?php
 include '../koneksi/koneksi.php';
 session_start();
+// Cek apakah user sudah login
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
