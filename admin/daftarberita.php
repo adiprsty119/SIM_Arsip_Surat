@@ -245,11 +245,6 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
                                 <hr>
 
-                                <form action="downloadberita.php" name="downloaddata_kgb-kp" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                    <div>
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Semua Berita (PDF)</button></a>
-                                    </div>
-                                </form>
                                 <div class="x_content">
                                     <table id="example" class="table table-striped table-bordered">
                                         <thead>
@@ -283,7 +278,6 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
                                                         <td>" . htmlspecialchars($data['tanggal']) . "</td>
                                                         <td>" . htmlspecialchars($data['penulis']) . "</td>
                                                         <td>
-                                                            <a href='downloadberita.php?id=" . $data['id'] . "' class='btn btn-success btn-xs'><i class='fa fa-download'></i></a>
                                                             <a href='editberita.php?id=" . $data['id'] . "' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a>
                                                             <button type='button' class='btn btn-sm btn-danger' onclick='tampilkanModal({$data['id']})'>Hapus</button>
                                                         </td>
